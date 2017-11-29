@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="44dp"
+	    android:background="@color/color_banner">
+		
+	    <RelativeLayout
+	        android:id="@+id/rl_back"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:visibility="gone"
+	        android:paddingLeft="@dimen/margin_normal"
+	        android:paddingRight="@dimen/margin_normal">
+	        
+		    <ImageView
+		        android:id="@+id/iv_back"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerVertical="true"
+		        android:background="@drawable/ic_launcher"/>
+		    <!-- 
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerVertical="true"
+		        android:layout_toRightOf="@id/iv_back"
+		        android:layout_marginLeft="5dp"
+		        android:text="@string/back"
+		        android:textSize="@dimen/textsize_normal"
+		        android:textColor="@color/white"/>
+		     -->
+	    </RelativeLayout>
+	    
+	    <TextView
+	        android:id="@+id/tv_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/textsize_title"
+	        android:textColor="@color/white"
+	        android:textStyle="bold"
+	        android:text="工作"
+	        android:layout_centerInParent="true"/> 
+	        
+	</RelativeLayout>	
+
+	<ScrollView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+	    
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical">	    
+	    
+			<HorizontalScrollView  
+		        android:layout_width="match_parent"  
+		        android:layout_height="101dp"
+		        android:background="@color/white"
+		        android:scrollbars="none" >  
+		        	    
+			    <LinearLayout
+			        android:id="@+id/ll_gallery"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="center_vertical"
+			        android:orientation="horizontal">
+			    </LinearLayout>
+			    
+		    </HorizontalScrollView>  
+		    
+			<View
+			    android:layout_width="match_parent"
+			    android:layout_height="10dp"/>
+			
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:background="@color/white">
+			    
+			    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="舆情应用"
+			        android:textColor="@color/black"
+			        android:textSize="14dp"
+			        android:layout_marginLeft="15dp"
+			        android:layout_marginTop="13dp"/>
+			    
+			    <LinearLayout
+			        android:layout_width="match_parent"
+			        android:layout_height="101dp"
+			        android:orientation="horizontal"
+			        android:layout_marginTop="13dp">
+		           
+			        <RelativeLayout
+			            android:id="@+id/rl_middle1"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle_1"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle1"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="舆情中心"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					        
+					    </LinearLayout>    
+			        </RelativeLayout>    
+			        
+			        <RelativeLayout
+			            android:id="@+id/rl_middle2"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle2"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle2"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="事件列表"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					        
+					    </LinearLayout>    
+			        </RelativeLayout> 
+			        
+			        <RelativeLayout
+			            android:id="@+id/rl_middle3"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle3"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle3"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="事件分析"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					        
+					    </LinearLayout>    
+			        </RelativeLayout> 
+			        
+			        <RelativeLayout
+			            android:id="@+id/rl_middle4"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle4"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle4"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="舆情追踪"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					    </LinearLayout>    
+			        </RelativeLayout> 	        	        	        
+			    </LinearLayout>  
+			    
+			    <LinearLayout
+			        android:layout_width="match_parent"
+			        android:layout_height="101dp"
+			        android:orientation="horizontal">
+		           
+			        <RelativeLayout
+			            android:id="@+id/rl_middle5"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle5"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle5"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="舆情预警"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					        
+					    </LinearLayout>    
+			        </RelativeLayout>    
+			        
+			        <RelativeLayout
+			            android:id="@+id/rl_middle6"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle6"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle6"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="舆情报告"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					        
+					    </LinearLayout>    
+			        </RelativeLayout> 
+			        
+			        <RelativeLayout
+			            android:id="@+id/rl_middle7"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle7"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle7"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="定向检测"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					        
+					    </LinearLayout>    
+			        </RelativeLayout> 
+			        
+			        <RelativeLayout
+			            android:id="@+id/rl_middle8"
+			            android:layout_width="match_parent"
+			            android:layout_height="match_parent"
+			            android:layout_weight="1"
+			            android:background="@drawable/shape_bg_yuqing">
+			    
+					    <LinearLayout
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_centerInParent="true"
+					        android:orientation="vertical">
+					        
+					        <ImageView
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_gravity="center_horizontal"
+					            android:src="@drawable/icon_middle8"/>
+					        
+						    <TextView
+						        android:id="@+id/tv_middle8"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:text="案例库"
+						        android:textColor="#999999"
+						        android:textSize="12sp"
+						        android:layout_marginTop="19dp"/>
+					    </LinearLayout>    
+			        </RelativeLayout> 	        	        	        
+			    </LinearLayout>	    
+			</LinearLayout>  
+			
+			<View
+			    android:layout_width="match_parent"
+			    android:layout_height="10dp"/>		    
+		    
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:background="@color/white">
+			    
+			    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="应急指挥"
+			        android:textColor="@color/black"
+			        android:textSize="14dp"
+			        android:layout_marginLeft="15dp"
+			        android:layout_marginTop="13dp"/>
+			    
+			    <View
+			        android:layout_width="match_parent"
+			        android:layout_height="1dp"
+			        android:background="#D9D9D9"
+			        android:layout_marginTop="13dp"/>
+			    
+			    <com.app.yuqing.view.MyGridView
+			        android:id="@+id/gv_yingjizhihui"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+	                android:gravity="start"
+	                android:listSelector="@android:color/transparent"
+	                android:numColumns="4"
+	                android:verticalSpacing="39dp"/>
+			    
+			    <View
+			        android:layout_width="match_parent"
+			        android:layout_height="25dp"/>
+			</LinearLayout>			   			
+		</LinearLayout>
+	</ScrollView>    
+	
+</LinearLayout>

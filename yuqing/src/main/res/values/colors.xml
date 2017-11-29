@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <color name="color_banner">#23C4A9</color>
+    <color name="color_main">#ffffff</color>
+	<color name="color_main_gray">#F5F5F5</color> 
+	
+	<color name="color_worktext_gray">#999999</color>   
+    
+    <color name="color_text_red">#DE536A</color>
+    <color name="color_text_gray">#666666</color>
+    <color name="color_text_hint">#BBBBBB</color>
+    <color name="color_divider">#D9D9D9</color>
+    <color name="color_text_gray_all">#777777</color>
+    <color name="color_hint_gray">#CACAD0</color>
+    <color name="color_divider_gray">#CCCBCC</color>
+    <color name="color_text_yellow">#F1AF3E</color>
+    
+    <color name="red">#de3842</color>
+    <color name="redofrecord">#ec5051</color>
+    <color name="green">#06bd04</color>
+    <color name="gray">#ffe9e7e7</color>
+    <color name="black">#000000</color>
+    <color name="black_text">#333333</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_text">#fdffff</color>
+	<color name="blue">#0098ff</color>
+	<color name="yellow">#FFFFE400</color>
+	<color name="orange">#ff6633</color>
+	<color name="gray_white">#eeeeee</color>
+	<color name="transparent_background">#00000000</color>
+	<color name="gray_background">#242424</color>
+	
+	<color name="text_hint">#666666</color>
+	<color name="button_blue">#66b3f6</color>
+	<color name="text_title">#cccccc</color>
+	<color name="color_text_radio">#66b3f6</color>
+	<color name="color_text_radio_unselected">#999999</color>
+	<color name="bg_gray">#242424</color>
+	
+	<color name="buttonColorIn">#06bd04</color>
+	<color name="buttonStroke">#06bd04</color>
+	<color name="buttonStrokeGray">#ffe9e7e7</color>
+	<color name="buttonColor">#FFFFFF</color>
+	
+	<color name="navpage">#FFE1E8EB</color>
+	
+	<color name="number1">#ffff00</color>
+	<color name="number2">#0080FF</color>
+	<color name="number3">#390000</color>
+	<color name="number4">#ff8040</color>	
+	<color name="number5">#00ffff</color>
+	<color name="number6">#1109bb</color>
+	<color name="number7">#acacac</color>
+	<color name="number8">#ff0000</color>
+	<color name="number9">#800040</color>
+	<color name="number10">#009b00</color>
+</resources>

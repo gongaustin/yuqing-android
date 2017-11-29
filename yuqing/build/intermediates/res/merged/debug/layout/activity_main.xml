@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_main">
+
+	<!-- 底部导航 -->
+	<include
+	    android:id="@+id/rl_footer" 
+	    layout="@layout/mode_footer"/>
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="50dp"
+	    android:orientation="horizontal"
+	    android:layout_alignParentBottom="true"
+	    android:clickable="false">
+	    
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:clickable="false">
+	        
+	        <TextView
+	            android:id="@+id/tv_msg1"
+	            android:layout_width="16dp"
+	            android:layout_height="16dp"
+	            android:textSize="8sp"
+	            android:textStyle="bold"
+	            android:textColor="@color/white"
+	            android:layout_alignParentRight="true"
+	            android:layout_marginTop="3dp"
+	            android:layout_marginRight="15dp"
+	            android:clickable="false"
+	            android:background="@drawable/shape_bg_red"
+	            android:gravity="center"/>
+	        
+	   </RelativeLayout>
+	   
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:clickable="false">
+	        
+	        
+	        
+	   </RelativeLayout>
+	   
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:clickable="false">
+	        
+	        
+	        
+	   </RelativeLayout>
+	   
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:clickable="false">
+	        
+	        
+	        
+	   </RelativeLayout>	    	    	    
+	    
+	</LinearLayout>    
+	
+	<!-- 页面内容 -->
+    <FrameLayout 
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+	    android:layout_above="@id/rl_footer"/>	
+	    
+</RelativeLayout>

@@ -1,0 +1,58 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+   <style name="navigation_bottom_radio">
+        <!-- 内部组件的排列 -->
+        <item name="android:gravity">center_horizontal</item>
+        <!-- 居中 -->
+		<item name="android:layout_gravity">center_vertical</item>
+        <!-- 宽度 -->
+        <item name="android:layout_width">0dp</item>
+        <!-- 高度 -->
+        <item name="android:layout_height">wrap_content</item>
+        <!-- 设置RadioButton的原来图片为空 -->
+        <item name="android:button">@null</item>
+        <!-- 与其他组件宽度占相同比重 -->
+        <item name="android:layout_weight">1.0</item>
+
+        <!-- 图标与文字的空隙 -->
+        <item name="android:drawablePadding">6.0dip</item>   
+        <!-- 文字的大小 -->
+        <item name="android:textSize">10sp</item>
+        <!-- 文字的颜色 -->
+        <item name="android:textColor">@color/color_radiobutton</item>
+    </style>       
+
+    <!-- 对话框样式 背景变暗-->
+    <style name="ShareDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style> 
+    
+	<!-- Confirm Dialog Animation -->
+    <style name="ConfirmDialogAnimstyle">
+        <item name="android:windowEnterAnimation">@anim/fade_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_anim</item>
+    </style>      
+</resources>

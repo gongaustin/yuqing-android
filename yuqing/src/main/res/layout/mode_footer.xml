@@ -1,0 +1,47 @@
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="#F5F5F5">
+      
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E6E6E6"/>
+    
+    <RadioGroup
+        android:id="@+id/rg_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+        <RadioButton
+            android:id="@+id/message_icon"
+            style="@style/navigation_bottom_radio"
+            android:drawableTop="@drawable/selector_message"
+            android:text="消息" 
+            android:gravity="center"/>
+
+        <RadioButton
+			android:id="@+id/work_icon"
+            style="@style/navigation_bottom_radio"
+            android:drawableTop="@drawable/selector_work"
+            android:text="工作"
+            android:gravity="center" />
+        
+        <RadioButton
+			android:id="@+id/contact_icon"
+            style="@style/navigation_bottom_radio"
+            android:drawableTop="@drawable/selector_contact"
+            android:text="联系人"
+            android:gravity="center" />   
+        
+        <RadioButton
+			android:id="@+id/me_icon"
+            style="@style/navigation_bottom_radio"
+            android:drawableTop="@drawable/selector_me"
+			android:text="我的"
+			android:gravity="center"/>
+    </RadioGroup>
+</RelativeLayout>

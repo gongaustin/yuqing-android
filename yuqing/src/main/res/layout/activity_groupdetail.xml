@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_main_gray">
+
+    <include layout="@layout/mode_header"/>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+		    <com.app.yuqing.view.MyGridView
+			     android:id="@+id/mgv_users"
+			     android:layout_width="match_parent"
+			     android:layout_height="wrap_content"
+			     android:gravity="start"
+			     android:listSelector="@android:color/transparent"
+			     android:numColumns="5"
+			     android:verticalSpacing="25dp"
+			     android:background="@color/white"
+			     android:paddingTop="15dp"
+			     android:paddingBottom="15dp"/>            
+            
+		    <Button
+		        android:id="@+id/btn_exit"
+		        android:layout_width="match_parent"
+		        android:layout_height="44dp"
+		        android:layout_marginLeft="15dp"
+		        android:layout_marginRight="15dp"
+		        android:layout_marginTop="15dp"
+		        android:text="删除并退出"
+		        android:textColor="@color/white"
+		        android:textSize="16sp"
+		        android:textStyle="bold"
+		        android:background="@drawable/shape_btn_exit"/>
+        </LinearLayout>    
+        
+    </ScrollView>    
+</LinearLayout>

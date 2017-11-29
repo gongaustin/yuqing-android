@@ -1,0 +1,112 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From IMLib:
+* build.gradle
+From RongIMKit:
+* java\
+* java\io\
+* java\io\rong\
+* java\io\rong\imkit\
+* java\io\rong\imkit\MainActivity.java
+* readme
+From yuqing:
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:21.0.3
+gson-2.3.jar => com.google.code.gson:gson:2.3
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+gson-2.3.jar => version 2.3 in com.google.code.gson:gson:2.3
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In IMLib:
+* AndroidManifest.xml => iMLib\src\main\AndroidManifest.xml
+* assets\ => iMLib\src\main\assets
+* libs\arm64-v8a\libRongIMLib.so => iMLib\src\main\jniLibs\arm64-v8a\libRongIMLib.so
+* libs\armeabi-v7a\libRongIMLib.so => iMLib\src\main\jniLibs\armeabi-v7a\libRongIMLib.so
+* libs\armeabi\libRongIMLib.so => iMLib\src\main\jniLibs\armeabi\libRongIMLib.so
+* libs\Rong_IMLib.jar => iMLib\libs\Rong_IMLib.jar
+* libs\x86\libRongIMLib.so => iMLib\src\main\jniLibs\x86\libRongIMLib.so
+* res\ => iMLib\src\main\res\
+* src\ => iMLib\src\main\java
+In RongIMKit:
+* AndroidManifest.xml => rongIMKit\src\main\AndroidManifest.xml
+* assets\ => rongIMKit\src\main\assets
+* libs\Rong_IMKit.jar => rongIMKit\libs\Rong_IMKit.jar
+* lint.xml => rongIMKit\lint.xml
+* res\ => rongIMKit\src\main\res\
+* src\ => rongIMKit\src\main\java
+In yuqing:
+* AndroidManifest.xml => yuqing\src\main\AndroidManifest.xml
+* assets\ => yuqing\src\main\assets\
+* libs\arm64-v8a\libgetuiext2.so => yuqing\src\main\jniLibs\arm64-v8a\libgetuiext2.so
+* libs\arm64-v8a\libpush.so => yuqing\src\main\jniLibs\arm64-v8a\libpush.so
+* libs\armeabi-v7a\libgetuiext2.so => yuqing\src\main\jniLibs\armeabi-v7a\libgetuiext2.so
+* libs\armeabi-v7a\libpush.so => yuqing\src\main\jniLibs\armeabi-v7a\libpush.so
+* libs\armeabi\libgetuiext2.so => yuqing\src\main\jniLibs\armeabi\libgetuiext2.so
+* libs\armeabi\libpush.so => yuqing\src\main\jniLibs\armeabi\libpush.so
+* libs\GetuiSDK2.11.1.0.jar => yuqing\libs\GetuiSDK2.11.1.0.jar
+* libs\MiPush_SDK_Client_3_2_2.jar => yuqing\libs\MiPush_SDK_Client_3_2_2.jar
+* libs\okhttp-3.8.1.jar => yuqing\libs\okhttp-3.8.1.jar
+* libs\okio-1.9.0.jar => yuqing\libs\okio-1.9.0.jar
+* libs\universal-image-loader-1.9.2-with-sources.jar => yuqing\libs\universal-image-loader-1.9.2-with-sources.jar
+* libs\x86\libgetuiext2.so => yuqing\src\main\jniLibs\x86\libgetuiext2.so
+* libs\x86\libpush.so => yuqing\src\main\jniLibs\x86\libpush.so
+* libs\xUtils-2.6.14.jar => yuqing\libs\xUtils-2.6.14.jar
+* res\ => yuqing\src\main\res\
+* src\ => yuqing\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

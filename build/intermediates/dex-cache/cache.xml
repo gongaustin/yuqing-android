@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_08fa5cafff11b28268eaca4bc22cea9adcdf57ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\libs\universal-image-loader-1.9.2-with-sources.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="111169c43b8a601f571585f75d998e6027e48ff4">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\2\universal-image-loader-1.9.2-with-sources_6265c5dcc8ed211567b596b75efd2767bf690171\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\libs\okio-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\2\okio-1.9.0_be28c26a772c528b3f1b8ca0d4db42cc928cef22\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\libs\MiPush_SDK_Client_3_2_2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="74c4db77df1c064b6ae16fbecb575c029971ab96">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\2\MiPush_SDK_Client_3_2_2_641fedaeb09de0a9de1daf6891de58ce28f2d67d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\libs\xUtils-2.6.14.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="17313c700b1c1682fc9491d7a8aa65f0c84e0204">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\2\xUtils-2.6.14_e7541ade1a690e8b3d78d863fa3f7d70cd2b476b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\.android\build-cache\0d9247ab090619522acd9587a85746772be56b69\output\jars\libs\internal_impl-21.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-21.0.3_d7080265583d185b81f6df344cee5941b46dab4d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ac78be1fb94d9b0ebe1b5b3bc988fcd4fc22323e">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_171cf1b6a005324d6fbb2dcd5088781ca0ba8096\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\rongIMKit\build\intermediates\bundles\default\libs\Rong_IMKit.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4d1babab6771eccd450bd230ad71231651cb8c03">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\8\Rong_IMKit_bae94ced9eef4c45c590770ef1ba56ba44a16aeb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\.android\build-cache\0d9247ab090619522acd9587a85746772be56b69\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\10\classes_df2fcd2e562962fb2b7c5e7e6706654f13150395\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3\5fc52c41ef0239d1093a1eb7c3697036183677ce\gson-2.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.3_a3d3cdd10d85735a8d7a5cfab1077c376e3d9a30\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\iMLib\build\intermediates\bundles\default\libs\Rong_IMLib.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6d47d313074f817edcb95a0f5a9fa14597209abd">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\8\Rong_IMLib_e6e0920beba9d0713df17990aa96bf516c6c789d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\eclipse\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-21.0.3_a67d3afb608d35a6bb2a89effc881c3800e06549\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\libs\okhttp-3.8.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\2\okhttp-3.8.1_45bd462c499ac8bd315196f260cb4904ed02967c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\androidstudio\wrok\demo\yuqing\yuqing\libs\GetuiSDK2.11.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2cb95fc505fb52967a4d818857953b88ba4391bb">
+        <dex dex="D:\androidstudio\wrok\demo\yuqing\yuqing\build\intermediates\transforms\dex\debug\folders\1000\2\GetuiSDK2.11.1.0_d60d0531af590a2baab741dffff82ac339826bad\classes.dex" />
+    </item>
+
+</items>

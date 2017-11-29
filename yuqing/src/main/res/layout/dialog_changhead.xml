@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a000000">
+
+    <LinearLayout
+        android:id="@+id/parentPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <TextView
+            android:id="@+id/tv_capture"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="拍照"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:gravity="center" 
+            android:background="@color/white"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#848282"/>
+        
+        <TextView
+            android:id="@+id/tv_pic"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="手机相册"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:gravity="center" 
+            android:background="@color/white"/>
+        
+		<View
+		    android:layout_width="match_parent"
+		    android:layout_height="6dp"/>
+		
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="取消"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:gravity="center" 
+            android:background="@color/white"/>		
+
+    </LinearLayout>
+
+</RelativeLayout>
