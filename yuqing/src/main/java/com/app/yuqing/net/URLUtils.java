@@ -10,7 +10,7 @@ public class URLUtils {
 	
 	public static final String LOGIN = SERVER + "a/login";
 		
-	public static final String QUERYLASTVERSION = SERVER + "appm/appManager/queryLastVersion";
+	public static final String QUERYLASTVERSION = SERVER + "api/appm/appManager/queryLastVersion";
 		
 	public static final String TREEDATA = SERVER + "api/treeDataMobile";
 	
@@ -22,7 +22,7 @@ public class URLUtils {
 	
 	public static final String UPDATEHEAD = SERVER + "api/updateHead";
 	
-	public static final String UPDATEPASSWORD = SERVER + "a/sys/user/updatePassword";
+	public static final String UPDATEPASSWORD = SERVER + "api/updatePassword";
 	
 	public static final String UPDATEMOBILE = SERVER + "api/updateMobile";
 		

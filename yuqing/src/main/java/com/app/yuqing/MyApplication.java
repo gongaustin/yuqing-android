@@ -1,5 +1,8 @@
 package com.app.yuqing;
 
+import io.rong.imkit.DefaultExtensionModule;
+import io.rong.imkit.IExtensionModule;
+import io.rong.imkit.RongExtensionManager;
 import io.rong.imkit.RongIM;
 
 import java.io.File;
@@ -8,6 +11,7 @@ import java.util.List;
 
 import com.app.yuqing.net.NetUtils;
 import com.app.yuqing.utils.CommonUtils;
+import com.app.yuqing.view.rongyun.MyExtensionModule;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -33,6 +37,7 @@ public class MyApplication extends Application{
 		}
 		RongIM.init(this);
 		RongIM.getInstance().setMessageAttachedUserInfo(true);
+		setMyExtensionModule();
 	}
 	
 	/**
@@ -88,6 +93,23 @@ public class MyApplication extends Application{
 	public void exit() {
 		for (Activity activity : activityList) {
 			activity.finish();
+		}
+	}
+
+	public void setMyExtensionModule() {
+		List<IExtensionModule> moduleList = RongExtensionManager.getInstance().getExtensionModules();
+		IExtensionModule defaultModule = null;
+		if (moduleList != null) {
+			for (IExtensionModule module : moduleList) {
+				if (module instanceof DefaultExtensionModule) {
+					defaultModule = module;
+					break;
+				}
+			}
+			if (defaultModule != null) {
+				RongExtensionManager.getInstance().unregisterExtensionModule(defaultModule);
+				RongExtensionManager.getInstance().registerExtensionModule(new MyExtensionModule());
+			}
 		}
 	}
 }

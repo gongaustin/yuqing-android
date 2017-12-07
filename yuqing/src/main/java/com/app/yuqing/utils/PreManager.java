@@ -1,5 +1,6 @@
 package com.app.yuqing.utils;
 
+import com.app.yuqing.bean.UserBean;
 import com.google.gson.Gson;
 
 import android.content.Context;
@@ -120,6 +121,9 @@ public class PreManager {
 	public static String getCookieHost(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getString("cookieHost", "");
-	}	
+	}
 
+	public static UserBean get(Context applicationContext, String keyLoginuser) {
+		return null;
+	}
 }

@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +28,10 @@ import com.app.yuqing.activity.ChangePhoneNumberActivity;
 import com.app.yuqing.activity.ChangePwdActivity;
 import com.app.yuqing.activity.LoginActivity;
 import com.app.yuqing.activity.MainActivity;
+import com.app.yuqing.bean.UserBean;
+import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.UserDetailResponseBean;
 import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 import com.app.yuqing.utils.ImageLoaderUtil;
@@ -81,27 +85,41 @@ public class MeFragment extends BaseFragment {
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		getData();
 		initListener();
 		super.onActivityCreated(savedInstanceState);
 	}
-	
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		getData();
+	}
+
 	private void getData() {
 		UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
+		if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId())) {
+			pushEventNoProgress(EventCode.HTTP_QUERYUSERBYID, bean.getUser().getId());
+		}
+
+	}
+
+	private void refreshView(UserBean bean) {
 		if (bean != null) {
-			if (!TextUtils.isEmpty(bean.getUser().getPhoto())) {
-				ImageLoaderUtil.display(bean.getUser().getPhoto(),ivBG);
-				ImageLoaderUtil.display(bean.getUser().getPhoto(),ivHead);
+			if (!TextUtils.isEmpty(bean.getPhoto())) {
+				ImageLoaderUtil.display(bean.getPhoto(),ivBG);
+				ImageLoaderUtil.display(bean.getPhoto(),ivHead);
+			} else {
+				ivHead.setImageResource(R.drawable.rc_default_portrait);
 			}
-			if (!TextUtils.isEmpty(bean.getUser().getName())) {
-				tvUserName.setText(bean.getUser().getName());
+			if (!TextUtils.isEmpty(bean.getName())) {
+				tvUserName.setText(bean.getName());
 			}
-			if (!TextUtils.isEmpty(bean.getUser().getMobile())) {
-				tvNumber.setText(bean.getUser().getMobile());
+			if (!TextUtils.isEmpty(bean.getMobile())) {
+				tvNumber.setText(bean.getMobile());
 			}
-			if (!TextUtils.isEmpty(bean.getUser().getRoleNames())) {
-				tvRole.setText(bean.getUser().getRoleNames());
-			}			
+			if (!TextUtils.isEmpty(bean.getRoleNames())) {
+				tvRole.setText(bean.getRoleNames());
+			}
 		}
 	}
 	
@@ -330,5 +348,20 @@ public class MeFragment extends BaseFragment {
 		intent.putExtra("scale", true);// 去黑边
 		intent.putExtra("scaleUpIfNeeded", true);// 去黑边
 		startActivityForResult(intent, CROP_IMAGE);
-	}   
+	}
+
+	@Override
+	public void onEventRunEnd(Event event) {
+		super.onEventRunEnd(event);
+		if (event.getEventCode() == EventCode.HTTP_QUERYUSERBYID) {
+			if (event.isSuccess()) {
+				UserDetailResponseBean bean = (UserDetailResponseBean) event.getReturnParamAtIndex(0);
+				if (bean.getData() != null) {
+					refreshView(bean.getData());
+				}
+			} else {
+				CommonUtils.showToast(event.getFailMessage());
+			}
+		}
+	}
 }

@@ -16,18 +16,22 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.app.yuqing.AppContext;
 import com.app.yuqing.R;
 import com.app.yuqing.activity.UrlWebClientActivity;
 import com.app.yuqing.adapter.ZhiHuiAdapter;
 import com.app.yuqing.bean.BacklogBean;
 import com.app.yuqing.bean.MenuBean;
+import com.app.yuqing.bean.UserBean;
 import com.app.yuqing.bean.YQType;
 import com.app.yuqing.bean.ZhiHuiType;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
 import com.app.yuqing.net.bean.BacklogResponseBean;
 import com.app.yuqing.net.bean.MenuResponseBean;
+import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
+import com.app.yuqing.utils.PreManager;
 import com.app.yuqing.view.MyGridView;
 import com.app.yuqing.view.NoRightDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -127,10 +131,26 @@ public class WorkFragment extends BaseFragment {
 		rlYQZX.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String url = "http://121.41.77.80:9090/qch5/sb.html?token=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJ0b2tlbiIsImlhdCI6MTUxMTU5NDM2Mywic3ViIjoie1wibG9naW5OYW1lXCI6XCJwenhjYjFcIixcIm5hbWVcIjpcIuW9reW3nuWuo-S8oOmDqDFcIixcImlkXCI6XCJhNzBhYmY4ODVhYzY0ZGYyOWI0ZDIzOTEzYTY5OGE3OFwifSIsImV4cCI6MTU0MzEzMDM2M30.DL09LqwaBkCP9zNJLgKb5r_x5AdCXTrLz4g5fCSTu28";
-				Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
-				intent.putExtra(UrlWebClientActivity.KEY_URL,url);
-				startActivity(intent);
+				UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
+				if (bean != null && !TextUtils.isEmpty(bean.getUser().getToken())) {
+					String url = "http://121.41.77.80:9090/qch5/sb.html?token="+bean.getUser().getToken();
+					Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
+					intent.putExtra(UrlWebClientActivity.KEY_URL,url);
+					startActivity(intent);
+				}
+			}
+		});
+
+		rlSJLB.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
+				if (bean != null && !TextUtils.isEmpty(bean.getUser().getToken())) {
+					String url = "http://121.41.77.80:9090/qch5/xp.html?token="+bean.getUser().getToken();
+					Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
+					intent.putExtra(UrlWebClientActivity.KEY_URL,url);
+					startActivity(intent);
+				}
 			}
 		});
 	}

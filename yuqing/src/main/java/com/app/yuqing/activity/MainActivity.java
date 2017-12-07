@@ -74,7 +74,6 @@ public class MainActivity extends BaseActivity {
 		initFragment();
 		initView();
 		getData();
-		
 	}
 	
 	@Override

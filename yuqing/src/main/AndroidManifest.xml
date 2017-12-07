@@ -9,6 +9,7 @@
         android:targetSdkVersion="22" />
     
    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--往sdcard中写入数据的权限 -->
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
@@ -388,6 +389,12 @@
 		<service android:name="com.app.yuqing.service.YuQingIntentService"/>		
 		<!-- 个推SDK配置结束 -->
 
+        <!-- 高德地图设置key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="edbfbf08117f304831d5edfa2afb982a" />
+        <!-- 定位需要的服务 -->
+        <service android:name="com.amap.api.location.APSService" />
 		
     </application>
 

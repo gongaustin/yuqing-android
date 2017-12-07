@@ -109,6 +109,7 @@ public class OKHttpUtil {
             }
             Response response1=mOkHttpClient.newCall(request).execute();
             responesStr = response1.body().string();
+            System.out.println("result:"+url+"   "+responesStr);
         }catch (Exception err){
             err.printStackTrace();
             return null;

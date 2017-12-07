@@ -10,37 +10,12 @@
     <include layout="@layout/mode_header"/>
     
     <LinearLayout
+        android:id="@+id/ll_tab"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:orientation="horizontal"
         android:background="@color/white">
-        
-        <TextView
-            android:id="@+id/tv_fgld"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:textColor="@color/color_radiobutton"
-            android:gravity="center"/>
-        
-        <TextView
-            android:id="@+id/tv_xcb"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:textColor="@color/color_radiobutton"
-            android:gravity="center"/>    
-            
-        <TextView
-            android:id="@+id/tv_xz"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:textColor="@color/color_radiobutton"
-            android:gravity="center"/>          
+
         
     </LinearLayout> 
     
