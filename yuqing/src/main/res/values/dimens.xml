@@ -9,6 +9,7 @@
     <dimen name="textsize_large_btn">18sp</dimen>
     <dimen name="textsize_small">13sp</dimen>
     <dimen name="textsize_mini">7sp</dimen>
+    <dimen name="textsize_mini_mini">6sp</dimen>
     <dimen name="textsize_normal">15sp</dimen>
     
     <dimen name="margin_normal">15dp</dimen>

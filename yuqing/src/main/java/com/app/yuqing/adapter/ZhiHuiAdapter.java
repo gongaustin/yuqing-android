@@ -48,9 +48,9 @@ public class ZhiHuiAdapter extends SetBaseAdapter<MenuBean>{
 			if (bean.getName().equals(ZhiHuiType.SB.getType())) {
 				holder.ivIcon.setImageResource(R.drawable.icon_sb);
 			}
-//			if (bean.getName().equals(ZhiHuiType.XP.getType())) {
-//				holder.ivIcon.setImageResource(R.drawable.icon_sb);
-//			}
+			if (bean.getName().equals(ZhiHuiType.XP.getType())) {
+				holder.ivIcon.setImageResource(R.drawable.icon_xp);
+			}
 			if (bean.getName().equals(ZhiHuiType.YJZH.getType())) {
 				holder.ivIcon.setImageResource(R.drawable.icon_yjzh);
 			}

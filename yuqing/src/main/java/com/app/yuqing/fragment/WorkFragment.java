@@ -109,11 +109,14 @@ public class WorkFragment extends BaseFragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				MenuBean bean = zhList.get(position);
-				if (bean != null && !TextUtils.isEmpty(bean.getHref())) {
-					Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
-					intent.putExtra(UrlWebClientActivity.KEY_URL, bean.getHref());
-					startActivity(intent);
+				UserResponseBean userBean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
+				if (userBean != null && !TextUtils.isEmpty(userBean.getUser().getToken())) {
+					MenuBean bean = zhList.get(position);
+					if (bean != null && !TextUtils.isEmpty(bean.getHref())) {
+						Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
+						intent.putExtra(UrlWebClientActivity.KEY_URL, bean.getHref()+"?token="+userBean.getUser().getToken());
+						startActivity(intent);
+					}
 				}
 			}
 		});
@@ -128,31 +131,31 @@ public class WorkFragment extends BaseFragment {
 		rlALK.setOnClickListener(rightOnclickListener);
 
 		//测试
-		rlYQZX.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
-				if (bean != null && !TextUtils.isEmpty(bean.getUser().getToken())) {
-					String url = "http://121.41.77.80:9090/qch5/sb.html?token="+bean.getUser().getToken();
-					Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
-					intent.putExtra(UrlWebClientActivity.KEY_URL,url);
-					startActivity(intent);
-				}
-			}
-		});
-
-		rlSJLB.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
-				if (bean != null && !TextUtils.isEmpty(bean.getUser().getToken())) {
-					String url = "http://121.41.77.80:9090/qch5/xp.html?token="+bean.getUser().getToken();
-					Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
-					intent.putExtra(UrlWebClientActivity.KEY_URL,url);
-					startActivity(intent);
-				}
-			}
-		});
+//		rlYQZX.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
+//				if (bean != null && !TextUtils.isEmpty(bean.getUser().getToken())) {
+//					String url = "http://121.41.77.80:9090/qch5/sb.html?token="+bean.getUser().getToken();
+//					Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
+//					intent.putExtra(UrlWebClientActivity.KEY_URL,url);
+//					startActivity(intent);
+//				}
+//			}
+//		});
+//
+//		rlSJLB.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
+//				if (bean != null && !TextUtils.isEmpty(bean.getUser().getToken())) {
+//					String url = "http://121.41.77.80:9090/qch5/xp.html?token="+bean.getUser().getToken();
+//					Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
+//					intent.putExtra(UrlWebClientActivity.KEY_URL,url);
+//					startActivity(intent);
+//				}
+//			}
+//		});
 	}
 	
 	private void initData() {

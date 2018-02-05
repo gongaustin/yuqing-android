@@ -113,7 +113,7 @@ public class ContactFragment extends BaseFragment {
 			params.gravity = Gravity.CENTER_VERTICAL;
 
 			TextView tv = new TextView(llTab.getContext());
-			tv.setTextSize(getResources().getDimension(R.dimen.textsize_mini));
+			tv.setTextSize(getResources().getDimension(R.dimen.textsize_mini_mini));
 			tv.setTextColor(getResources().getColor(R.color.color_worktext_gray));
 			tv.setText(bean.getName());
 			tv.setGravity(Gravity.CENTER);

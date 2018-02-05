@@ -1,5 +1,6 @@
 package com.app.yuqing.view.rongyun;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -12,15 +13,21 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
 import com.app.yuqing.R;
+import com.app.yuqing.activity.MainActivity;
 
 import java.io.File;
+import java.util.HashSet;
 
 import io.rong.imkit.RongExtension;
 import io.rong.imkit.RongIM;
+import io.rong.imkit.model.FileInfo;
 import io.rong.imkit.plugin.IPluginModule;
+import io.rong.imkit.utilities.PermissionCheckUtil;
+import io.rong.imlib.IRongCallback;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
+import io.rong.message.FileMessage;
 import io.rong.message.ImageMessage;
 
 /**
@@ -31,24 +38,64 @@ public class MyPlugin implements IPluginModule {
 
     private Conversation.ConversationType conversationType;
     private String targetId;
+
+    private static final int REQUEST_FILE = 100;
     @Override
     public Drawable obtainDrawable(Context context) {
-        return context.getResources().getDrawable(R.drawable.icon_add);
+        return context.getResources().getDrawable(R.drawable.rc_ac_audio_file_icon);
     }
 
     @Override
     public String obtainTitle(Context context) {
-        return context.getResources().getString(R.string.app_name);
+        return "视频";
     }
 
     @Override
     public void onClick(Fragment fragment, RongExtension rongExtension) {
         conversationType = rongExtension.getConversationType();
         targetId = rongExtension.getTargetId();
+
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+
+        if (!PermissionCheckUtil.requestPermissions(fragment, permissions)) {
+            return;
+        }
+
+        Intent intent = new Intent(fragment.getActivity(), MainActivity.class);
+
+        rongExtension.startActivityForPluginResult(intent, REQUEST_FILE, this);
     }
 
+
     @Override
-    public void onActivityResult(int i, int i1, Intent intent) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_FILE) {
+
+            if (data != null) {
+
+                HashSet<FileInfo> selectedFileInfos = (HashSet<FileInfo>) data.getSerializableExtra("sendSelectedFiles");
+
+                for (FileInfo fileInfo : selectedFileInfos) {
+
+                    Uri filePath = Uri.parse("file://" + fileInfo.getFilePath());
+
+                    FileMessage fileMessage = FileMessage.obtain(filePath);
+
+                    if (fileMessage != null) {
+
+                        fileMessage.setType(fileInfo.getSuffix());
+
+                        final Message message = Message.obtain(targetId, conversationType, fileMessage);
+
+                        RongIM.getInstance().sendMediaMessage(message, null, null, (IRongCallback.ISendMediaMessageCallback) null);
+
+                    }
+
+                }
+
+            }
+
+        }
 
     }
 

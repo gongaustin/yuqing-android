@@ -64,12 +64,16 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 	// permission Code
 	private static final int P_CODE_PERMISSIONS = 101;
 
+	private String initUrl = "";
+	private boolean isFirstUrl = true;
+	private static final String BACK_URL = "qc://back";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestPermissionsAndroidM();
 		String url = getIntent().getStringExtra(KEY_URL);
 		url = dealUrl(url);
+		initUrl = url.substring(0,url.indexOf("?token="));
 		WebSettings webSettings = webView.getSettings();
 		initWebviewSet(webSettings);
 		initWebView(webView);
@@ -104,7 +108,6 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		webSettings.setDisplayZoomControls(false);
 		//设置缓存
 		webSettings.setAppCacheEnabled(true);
-
 	}
 
 	private void initWebView(WebView wView) {
@@ -124,13 +127,13 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		}
 		return url;
 	}
-	
+
     @Override
     // 设置回退
     // 覆盖Activity类的onKeyDown(int keyCoder,KeyEvent event)方法
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-        	webView.goBack(); // goBack()表示返回WebView的上一页面
+			webView.goBack(); // goBack()表示返回WebView的上一页面
             return true;
         }
         return super.onKeyDown(keyCode,event);
@@ -351,6 +354,19 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 
 		@Override
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			System.out.println("WebView url:"+url);
+			if (!isFirstUrl && url.equals(initUrl)) {
+				finish();
+				return true;
+			}
+			if (isFirstUrl) {
+				initUrl = url;
+				isFirstUrl = false;
+			}
+			if (url.equals(BACK_URL)){
+				finish();
+				return true;
+			}
 			view.loadUrl(url);
 			return true;
 		}
