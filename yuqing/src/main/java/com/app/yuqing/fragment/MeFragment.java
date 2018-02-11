@@ -162,6 +162,11 @@ public class MeFragment extends BaseFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				((MainActivity)getActivity()).getData();
+				String clientID = PreManager.getClientId(getActivity().getApplicationContext());
+				if (!TextUtils.isEmpty(clientID)) {
+					pushEventBlock(EventCode.HTTP_GETUITEST,clientID);
+				}
+
 			}
 		});
 		

@@ -40,5 +40,7 @@ public class EventCode {
 	public static final int HTTP_UPDATECLIENTID = ++BASECODE;
 	
 	public static final int HTTP_SYNC = ++BASECODE;
+
+	public static final int HTTP_GETUITEST = ++BASECODE;
 }
 

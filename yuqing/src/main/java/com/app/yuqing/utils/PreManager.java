@@ -123,6 +123,16 @@ public class PreManager {
 				.getString("cookieHost", "");
 	}
 
+	public static void saveClientId(Context context,String clientId) {
+		PreferenceManager.getDefaultSharedPreferences(context).edit()
+				.putString("clientId", clientId).commit();
+	}
+
+	public static String getClientId(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context)
+				.getString("clientId", "");
+	}
+
 	public static UserBean get(Context applicationContext, String keyLoginuser) {
 		return null;
 	}

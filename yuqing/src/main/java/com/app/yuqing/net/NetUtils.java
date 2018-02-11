@@ -3,6 +3,7 @@ package com.app.yuqing.net;
 import com.app.yuqing.net.httprunner.CreateGroupHttpRunner;
 import com.app.yuqing.net.httprunner.DismissGroupHttpRunner;
 import com.app.yuqing.net.httprunner.GetTokenHttpRunner;
+import com.app.yuqing.net.httprunner.GetuiTestHttpRunner;
 import com.app.yuqing.net.httprunner.JoinGroupHttpRunner;
 import com.app.yuqing.net.httprunner.LoginHttpRunner;
 import com.app.yuqing.net.httprunner.MenuListHttpRunner;
@@ -43,6 +44,7 @@ public class NetUtils {
 		eventManager.registerEventRunner(EventCode.HTTP_DISMISSGROUP, new DismissGroupHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_UPDATECLIENTID, new UpdateClientIdHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_SYNC, new SyncHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_GETUITEST, new GetuiTestHttpRunner());
 	}
 }
 

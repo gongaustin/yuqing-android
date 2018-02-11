@@ -47,5 +47,7 @@ public class URLUtils {
 	public static final String UPDATECLIENTID = SERVER + "api/push/updateClientId";
 	
 	public static final String SYNC = SERVER + "rong/group/sync";
+
+	public static final String GETUITEST = SERVER + "api/pilotsend/getuiTest";
 }
 

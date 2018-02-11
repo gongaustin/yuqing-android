@@ -73,7 +73,9 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		requestPermissionsAndroidM();
 		String url = getIntent().getStringExtra(KEY_URL);
 		url = dealUrl(url);
-		initUrl = url.substring(0,url.indexOf("?token="));
+		if (!TextUtils.isEmpty(url) && url.contains("?token=")) {
+			initUrl = url.substring(0,url.indexOf("?token="));
+		}
 		WebSettings webSettings = webView.getSettings();
 		initWebviewSet(webSettings);
 		initWebView(webView);
