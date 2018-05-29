@@ -6,7 +6,8 @@ public class AppContext {
 	public static final String TAG = "sifanggou";	//文件名字
 	
 	//服务器
-	public static final String SERVER = "http://120.77.23.139/caipiao/api";
+//	public static final String SERVER = "http://120.77.23.139/caipiao/api";
+	public static final String SERVER = "http://sevencai.cn/caipiao/api";
 	//通讯key
 	public static final String KEY = "RThXxpuR5n9p7CYSTWFy5awyBYnXeBdj";
 	
