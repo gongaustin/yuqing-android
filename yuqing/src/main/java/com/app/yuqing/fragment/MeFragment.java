@@ -1,7 +1,6 @@
 package com.app.yuqing.fragment;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 import android.app.Activity;
@@ -9,11 +8,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,9 +25,11 @@ import com.app.yuqing.activity.ChangePhoneNumberActivity;
 import com.app.yuqing.activity.ChangePwdActivity;
 import com.app.yuqing.activity.LoginActivity;
 import com.app.yuqing.activity.MainActivity;
-import com.app.yuqing.bean.UserBean;
+import com.app.yuqing.bean.PersonalBean;
+import com.app.yuqing.bean.UserOldBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.PersonalInfoResponseBean;
 import com.app.yuqing.net.bean.UserDetailResponseBean;
 import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
@@ -43,6 +42,10 @@ import com.app.yuqing.view.ChangeHeadDialog;
 import com.app.yuqing.view.ChangeHeadDialog.ChangeHeadDialogListener;
 import com.app.yuqing.view.ExitDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Group;
+import io.rong.imlib.model.UserInfo;
 
 public class MeFragment extends BaseFragment {
 
@@ -96,29 +99,26 @@ public class MeFragment extends BaseFragment {
 	}
 
 	private void getData() {
-		UserResponseBean bean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
-		if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId())) {
-			pushEventNoProgress(EventCode.HTTP_QUERYUSERBYID, bean.getUser().getId());
-		}
+		pushEvent(EventCode.HTTP_PERSONALINFO);
 
 	}
 
-	private void refreshView(UserBean bean) {
+	private void refreshView(PersonalBean bean) {
 		if (bean != null) {
-			if (!TextUtils.isEmpty(bean.getPhoto())) {
-				ImageLoaderUtil.display(bean.getPhoto(),ivBG);
-				ImageLoaderUtil.display(bean.getPhoto(),ivHead);
+			if (!TextUtils.isEmpty(bean.getAvatar())) {
+				ImageLoaderUtil.display(bean.getAvatar(),ivBG);
+				ImageLoaderUtil.display(bean.getAvatar(),ivHead);
 			} else {
 				ivHead.setImageResource(R.drawable.rc_default_portrait);
 			}
-			if (!TextUtils.isEmpty(bean.getName())) {
-				tvUserName.setText(bean.getName());
+			if (!TextUtils.isEmpty(bean.getRealname())) {
+				tvUserName.setText(bean.getRealname());
 			}
-			if (!TextUtils.isEmpty(bean.getMobile())) {
-				tvNumber.setText(bean.getMobile());
+			if (!TextUtils.isEmpty(bean.getPhone())) {
+				tvNumber.setText(bean.getPhone());
 			}
-			if (!TextUtils.isEmpty(bean.getRoleNames())) {
-				tvRole.setText(bean.getRoleNames());
+			if (!TextUtils.isEmpty(bean.getDeptName())) {
+				tvRole.setText(bean.getDeptName());
 			}
 		}
 	}
@@ -162,10 +162,6 @@ public class MeFragment extends BaseFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				((MainActivity)getActivity()).getData();
-				String clientID = PreManager.getClientId(getActivity().getApplicationContext());
-				if (!TextUtils.isEmpty(clientID)) {
-					pushEventBlock(EventCode.HTTP_GETUITEST,clientID);
-				}
 
 			}
 		});
@@ -358,12 +354,14 @@ public class MeFragment extends BaseFragment {
 	@Override
 	public void onEventRunEnd(Event event) {
 		super.onEventRunEnd(event);
-		if (event.getEventCode() == EventCode.HTTP_QUERYUSERBYID) {
+		if (event.getEventCode() == EventCode.HTTP_PERSONALINFO) {
 			if (event.isSuccess()) {
-				UserDetailResponseBean bean = (UserDetailResponseBean) event.getReturnParamAtIndex(0);
-				if (bean.getData() != null) {
+				PersonalInfoResponseBean bean = (PersonalInfoResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null && bean.getData() != null) {
+					PreManager.put(getActivity().getApplicationContext(),AppContext.KEY_LOGINUSER,bean.getData());
 					refreshView(bean.getData());
 				}
+
 			} else {
 				CommonUtils.showToast(event.getFailMessage());
 			}

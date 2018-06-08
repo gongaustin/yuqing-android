@@ -9,6 +9,7 @@ import io.rong.imlib.model.UserInfo;
 import com.app.yuqing.AppContext;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.PersonalInfoResponseBean;
 import com.app.yuqing.net.bean.TokenBean;
 import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
@@ -70,13 +71,27 @@ public class StartActivity extends BaseActivity {
 			if (event.isSuccess()) {
 				UserResponseBean bean = (UserResponseBean) event.getReturnParamAtIndex(0);
 				if (bean != null) {
-					PreManager.put(getApplicationContext(), AppContext.KEY_LOGINUSER, bean);
-					
-					Uri headUri = Uri.parse(bean.getUser().getPhoto());
-	                UserInfo userInfo = new UserInfo(bean.getUser().getId(), bean.getUser().getName(),headUri);
-	                RongIM.getInstance().setCurrentUserInfo(userInfo);
+					PreManager.putString(getApplication(),AppContext.KEY_TOKEN,bean.getData());
+					pushEvent(EventCode.HTTP_PERSONALINFO);
+				}
+			} else {
+				Intent intent = new Intent(StartActivity.this,LoginActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		}
+
+		if (event.getEventCode() == EventCode.HTTP_PERSONALINFO) {
+			if (event.isSuccess()) {
+				PersonalInfoResponseBean bean = (PersonalInfoResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null && bean.getData() != null) {
+					PreManager.put(getApplicationContext(),AppContext.KEY_LOGINUSER,bean.getData());
+
+					Uri headUri = Uri.parse(bean.getData().getAvatar());
+					UserInfo userInfo = new UserInfo(bean.getData().getUserId(), bean.getData().getRealname(),headUri);
+					RongIM.getInstance().setCurrentUserInfo(userInfo);
 					RongIM.setGroupInfoProvider(new GroupInfoProvider() {
-						
+
 						@Override
 						public Group getGroupInfo(String id) {
 							// TODO Auto-generated method stub
@@ -85,28 +100,14 @@ public class StartActivity extends BaseActivity {
 							return mGroup;
 						}
 					}, false);
-					
-					pushEventNoProgress(EventCode.HTTP_GETTOKEN, bean.getUser().getId(),bean.getUser().getName(),bean.getUser().getPhoto());
+					if (!TextUtils.isEmpty(bean.getData().getRongToken())) {
+						connect(bean.getData().getRongToken());
+					}
 				}
 			} else {
-				Intent intent = new Intent(StartActivity.this,LoginActivity.class);
-				startActivity(intent);
-				finish();
+				CommonUtils.showToast(event.getFailMessage());
 			}
 		}
-		
-		if (event.getEventCode() == EventCode.HTTP_GETTOKEN) {
-			if (event.isSuccess()) {
-				TokenBean bean = (TokenBean) event.getReturnParamAtIndex(0);
-				if (bean != null) {
-					connect(bean.getToken());
-				}
-			} else {
-				Intent intent = new Intent(StartActivity.this,LoginActivity.class);
-				startActivity(intent);
-				finish();
-			}
-		}		
 	}
 	
 	/**

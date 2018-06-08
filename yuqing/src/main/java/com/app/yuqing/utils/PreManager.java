@@ -1,6 +1,6 @@
 package com.app.yuqing.utils;
 
-import com.app.yuqing.bean.UserBean;
+import com.app.yuqing.bean.UserOldBean;
 import com.google.gson.Gson;
 
 import android.content.Context;
@@ -133,7 +133,7 @@ public class PreManager {
 				.getString("clientId", "");
 	}
 
-	public static UserBean get(Context applicationContext, String keyLoginuser) {
+	public static UserOldBean get(Context applicationContext, String keyLoginuser) {
 		return null;
 	}
 }

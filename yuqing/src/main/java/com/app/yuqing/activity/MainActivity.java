@@ -1,26 +1,23 @@
 package com.app.yuqing.activity;
 
 import io.rong.imkit.RongIM;
-import io.rong.imkit.RongIM.GroupInfoProvider;
-import io.rong.imkit.manager.IUnReadMessageObserver;
-import io.rong.imlib.model.Conversation;
-import io.rong.imlib.model.Group;
 
 import java.util.ArrayList;
 
 import com.app.yuqing.AppContext;
 import com.app.yuqing.R;
 import com.app.yuqing.bean.GroupBean;
+import com.app.yuqing.bean.PersonalBean;
 import com.app.yuqing.fragment.BaseFragment;
 import com.app.yuqing.fragment.ContactFragment;
 import com.app.yuqing.fragment.MeFragment;
 import com.app.yuqing.fragment.MessageFragment;
 import com.app.yuqing.fragment.WorkFragment;
+import com.app.yuqing.fragment.WorkNewFragment;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
 import com.app.yuqing.net.bean.GroupListResponseBean;
-import com.app.yuqing.net.bean.UserResponseBean;
-import com.app.yuqing.net.bean.VersionBean;
+import com.app.yuqing.net.bean.VersionResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 import com.app.yuqing.utils.PreManager;
 import com.app.yuqing.view.BaseDialog.DialogListener;
@@ -32,7 +29,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,14 +55,15 @@ public class MainActivity extends BaseActivity {
 	private FragmentManager fragmentManager;
 	
 	private MessageFragment messageFragment;
-	private WorkFragment workFragment;
+//	private WorkFragment workFragment;
+	private WorkNewFragment workNewFragment;
 	private ContactFragment contactFragment;
 	private MeFragment meFragment;
 	
 	private ArrayList<BaseFragment> fragments = new ArrayList<BaseFragment>();
 	
 	private VersionUpdateDialog versionUpdateDialog;
-	private UserResponseBean loginBean;
+	private PersonalBean loginBean;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -93,11 +90,17 @@ public class MainActivity extends BaseActivity {
 		fragmentManager = getSupportFragmentManager();
 		
 		messageFragment = new MessageFragment();
-		workFragment = new WorkFragment();
+//		workFragment = new WorkFragment();
+		workNewFragment = new WorkNewFragment();
+
+		Bundle bundle = new Bundle();
+		bundle.putString(WorkNewFragment.KEY_URL,AppContext.APP_URL);
+		workNewFragment.setArguments(bundle);
+
 		contactFragment = new ContactFragment();
 		meFragment = new MeFragment();
 		fragments.add(messageFragment);
-		fragments.add(workFragment);
+		fragments.add(workNewFragment);
 		fragments.add(contactFragment);
 		fragments.add(meFragment);
 		
@@ -192,35 +195,35 @@ public class MainActivity extends BaseActivity {
     }
     
     public void getData() {
-    	pushEventNoProgress(EventCode.HTTP_QUERYLASTVERSION);
+    	pushEventNoProgress(EventCode.HTTP_QUERYUPGRAGE,AppContext.APPID,CommonUtils.getVersion());
     	
-    	loginBean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
-		if (loginBean != null && loginBean.getUser() != null && !TextUtils.isEmpty(loginBean.getUser().getId())) {
-			pushEvent(EventCode.HTTP_QUERYGROUP, loginBean.getUser().getId());			
-		}
+    	loginBean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, PersonalBean.class);
+//		if (loginBean != null && loginBean.getUser() != null && !TextUtils.isEmpty(loginBean.getUser().getId())) {
+//			pushEvent(EventCode.HTTP_QUERYGROUP, loginBean.getUser().getId());
+//		}
     }
     
     @Override
     public void onEventRunEnd(Event event) {
     	// TODO Auto-generated method stub
     	super.onEventRunEnd(event);
-    	if (event.getEventCode() == EventCode.HTTP_QUERYLASTVERSION) {
+    	if (event.getEventCode() == EventCode.HTTP_QUERYUPGRAGE) {
 			if (event.isSuccess()) {
-				final VersionBean bean = (VersionBean) event.getReturnParamAtIndex(0);
-				if (bean != null) {
-					if (!CommonUtils.checkVersionIsSame(bean.getVersion())) {
+				final VersionResponseBean bean = (VersionResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null && bean.getData() != null) {
+					if (!CommonUtils.checkVersionIsSame(bean.getData().getNewVersion())) {
 						meFragment.tvVersion.setText("有新版本");
 						if (versionUpdateDialog == null) {
 							versionUpdateDialog = new VersionUpdateDialog(MainActivity.this);
 						}
-						versionUpdateDialog.setData(bean.getDesc());
+						versionUpdateDialog.setData(bean.getData().getUpdateLog());
 						versionUpdateDialog.setListener(new DialogListener() {
 							
 							@Override
 							public void update(Object object) {
 								if ("true".equals((String)object)) {
 									Intent intent = new Intent(Intent.ACTION_VIEW);
-									intent.setData(Uri.parse(bean.getUrl()));
+									intent.setData(Uri.parse(bean.getData().getDownloadUrl()));
 									startActivity(intent);
 								}
 							}
@@ -248,9 +251,9 @@ public class MainActivity extends BaseActivity {
 					if (groupId.endsWith(",")) {
 						groupId = groupId.substring(0, groupId.length() - 1);
 					}
-					if (loginBean != null && loginBean.getUser() != null && !TextUtils.isEmpty(loginBean.getUser().getId())) {
-						pushEvent(EventCode.HTTP_SYNC, groupId,loginBean.getUser().getId());			
-					}
+//					if (loginBean != null && loginBean.getUser() != null && !TextUtils.isEmpty(loginBean.getUser().getId())) {
+//						pushEvent(EventCode.HTTP_SYNC, groupId,loginBean.getUser().getId());
+//					}
 				}
 			} else {
 				CommonUtils.showToast(event.getFailMessage());

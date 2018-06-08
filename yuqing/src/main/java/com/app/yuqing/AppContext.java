@@ -3,15 +3,10 @@ package com.app.yuqing;
 import java.io.File;
 
 public class AppContext {
-	public static final String TAG = "sifanggou";	//文件名字
+	public static final String TAG = "yuqing";	//文件名字
 	
-	//服务器
-//	public static final String SERVER = "http://120.77.23.139/caipiao/api";
-	public static final String SERVER = "http://sevencai.cn/caipiao/api";
-	//通讯key
-	public static final String KEY = "RThXxpuR5n9p7CYSTWFy5awyBYnXeBdj";
-	
-	public static final String PACKGE_NAME = "com.app.sifanggou";
+	public static final String PACKGE_NAME = "com.app.yuqing";
+
 	//Log 管理信息
 	public static final String LOG_NET = "net";
 	public static final String LOG_MAP = "map";
@@ -20,7 +15,7 @@ public class AppContext {
 	public static final String LOG_MAIN = "main";
 	
 	//缓存数据
-	public static final String APP_NAME = "sifanggou";	//文件名字
+	public static final String APP_NAME = "yuqing";	//文件名字
 	public static final String FILE_SAVE_ROOT_DIRECTORY = File.separator + APP_NAME + File.separator;
 	public static final int PICTURE_SIZE = 300;	//暂且没用到，控制压缩图片大小，单位kb	
 	public static final String SAVE_PATH = "/"+APP_NAME;	//压缩文件保存路径
@@ -34,10 +29,11 @@ public class AppContext {
 	public static final String USER_LOGIN = "login_user_login";
 	public static final String USER_ID = "login_user_id";
 	public static final String URL_SUCCESSCODE = "1";
-	
-	public static final long GUANGGAOTIME = 6000; //轮播广告停留时间
+
 	public static final String KEY_LOGINUSER = "key_loginuser";
 	
 	public static final String KEY_NOLOGIN = "key_nologin";
-	
+	public static final String KEY_TOKEN = "key_token";
+	public static final String APPID = "1";
+	public static final String APP_URL = "http://120.24.241.113:8080/blt-app/#/";
 }

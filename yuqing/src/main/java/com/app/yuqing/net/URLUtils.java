@@ -2,15 +2,21 @@ package com.app.yuqing.net;
 
 public class URLUtils {
 
-//	private static final String SERVER = "http://sevencai.cn/";
+	private static final String SERVER = "http://new.sevencai.com:8000/";
 	
 //	private static final String SERVER = "http://121.41.77.80:8080/";
 
-	private static final String SERVER = "http://120.24.241.113:8080/";
+//	private static final String SERVER = "http://120.24.241.113:8080/";
 	
 	public static final String PIC_SERVER = "http://sevencai.cn";
 	
-	public static final String LOGIN = SERVER + "a/login";
+	public static final String LOGIN = SERVER + "ucenter/app/login";
+
+	public static final String PERSONALINFO = SERVER + "ucenter/app/query/personalInfo";
+
+	public static final String QUERYUSER = SERVER + "ucenter/app/query/user";
+
+	public static final String QUERYUPGRAGE = SERVER + "ucenter/app/query/upgrage";
 		
 	public static final String QUERYLASTVERSION = SERVER + "api/appm/appManager/queryLastVersion";
 		

@@ -54,7 +54,7 @@ public class LoginHttpRunner extends HttpRunner {
 			event.setFailException(new Exception("登录失败"));
 		} else {
 			UserResponseBean bean = gson.fromJson(result, UserResponseBean.class);
-			if ("true".equals(bean.getFlag())) {
+			if (bean.isSuccess()) {
 				event.setSuccess(true);
 				event.addReturnParam(bean);
 			} else {

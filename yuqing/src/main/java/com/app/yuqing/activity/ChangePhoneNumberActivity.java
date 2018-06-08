@@ -2,10 +2,9 @@ package com.app.yuqing.activity;
 
 import com.app.yuqing.AppContext;
 import com.app.yuqing.R;
-import com.app.yuqing.bean.UserBean;
+import com.app.yuqing.bean.UserOldBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
-import com.app.yuqing.net.bean.ChangePwdResponseBean;
 import com.app.yuqing.net.bean.UpdatePhoneResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 import com.app.yuqing.utils.PreManager;
@@ -33,7 +32,7 @@ public class ChangePhoneNumberActivity extends BaseActivity{
 		addBack(R.id.rl_back);
 		setTitle("修改手机号");
 		
-		UserBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER,UserBean.class);
+		UserOldBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER,UserOldBean.class);
 		if (bean != null && !TextUtils.isEmpty(bean.getMobile())) {
 			edtPhone.setText(bean.getMobile());
 		}

@@ -1,21 +1,21 @@
 package com.app.yuqing.net.bean;
 
-import com.app.yuqing.bean.UserBean;
+import com.app.yuqing.bean.UserOldBean;
 
 public class UserDetailResponseBean extends BaseResponseBean {
 
 	private String flag;
-	private UserBean data;
+	private UserOldBean data;
 	public String getFlag() {
 		return flag;
 	}
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-	public UserBean getData() {
+	public UserOldBean getData() {
 		return data;
 	}
-	public void setData(UserBean data) {
+	public void setData(UserOldBean data) {
 		this.data = data;
 	}
 }

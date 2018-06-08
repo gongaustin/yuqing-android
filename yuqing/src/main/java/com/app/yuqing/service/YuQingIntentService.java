@@ -113,9 +113,9 @@ public class YuQingIntentService extends GTIntentService{
 		Intent dataIntent = new Intent(this,UrlWebClientActivity.class);
 		UserResponseBean token = PreManager.get(MyApplication.instance.getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
 		String url = mcd.getUrl();
-		if (token != null && token.getUser() != null && !TextUtils.isEmpty(token.getUser().getToken())) {
-			url = url + "?token="+token.getUser().getToken();
-		}
+//		if (token != null && token.getUser() != null && !TextUtils.isEmpty(token.getUser().getToken())) {
+//			url = url + "?token="+token.getUser().getToken();
+//		}
 		dataIntent.putExtra(UrlWebClientActivity.KEY_URL,url);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, dataIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		Notification notification = new Notification.Builder(this)

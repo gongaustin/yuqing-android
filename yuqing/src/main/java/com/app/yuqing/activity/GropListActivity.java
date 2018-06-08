@@ -66,9 +66,9 @@ public class GropListActivity extends BaseActivity {
 	
 	private void initData() {
 		UserResponseBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
-		if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId())) {
-			pushEvent(EventCode.HTTP_QUERYGROUP, bean.getUser().getId());			
-		}
+//		if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId())) {
+//			pushEvent(EventCode.HTTP_QUERYGROUP, bean.getUser().getId());
+//		}
 	}
 	
 	@Override

@@ -22,7 +22,6 @@ import com.app.yuqing.activity.UrlWebClientActivity;
 import com.app.yuqing.adapter.ZhiHuiAdapter;
 import com.app.yuqing.bean.BacklogBean;
 import com.app.yuqing.bean.MenuBean;
-import com.app.yuqing.bean.UserBean;
 import com.app.yuqing.bean.YQType;
 import com.app.yuqing.bean.ZhiHuiType;
 import com.app.yuqing.net.Event;
@@ -110,14 +109,14 @@ public class WorkFragment extends BaseFragment {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				UserResponseBean userBean = PreManager.get(getActivity().getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
-				if (userBean != null && !TextUtils.isEmpty(userBean.getUser().getToken())) {
-					MenuBean bean = zhList.get(position);
-					if (bean != null && !TextUtils.isEmpty(bean.getHref())) {
-						Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
-						intent.putExtra(UrlWebClientActivity.KEY_URL, bean.getHref()+"?token="+userBean.getUser().getToken());
-						startActivity(intent);
-					}
-				}
+//				if (userBean != null && !TextUtils.isEmpty(userBean.getUser().getToken())) {
+//					MenuBean bean = zhList.get(position);
+//					if (bean != null && !TextUtils.isEmpty(bean.getHref())) {
+//						Intent intent = new Intent(getActivity(),UrlWebClientActivity.class);
+//						intent.putExtra(UrlWebClientActivity.KEY_URL, bean.getHref()+"?token="+userBean.getUser().getToken());
+//						startActivity(intent);
+//					}
+//				}
 			}
 		});
 		

@@ -6,7 +6,7 @@ import com.app.yuqing.AppContext;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.OKHttpUtil;
 import com.app.yuqing.net.URLUtils;
-import com.app.yuqing.net.bean.VersionBean;
+import com.app.yuqing.net.bean.VersionResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 
 public class QueryLastVersionHttpRunner extends HttpRunner {
@@ -28,7 +28,7 @@ public class QueryLastVersionHttpRunner extends HttpRunner {
 		if ("false".equals(result)) {
 			event.setSuccess(false);
 		} else {
-			VersionBean bean = gson.fromJson(result, VersionBean.class);
+			VersionResponseBean bean = gson.fromJson(result, VersionResponseBean.class);
 			event.setSuccess(true);
 			event.addReturnParam(bean);
 		}

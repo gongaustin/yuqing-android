@@ -1,10 +1,9 @@
 package com.app.yuqing.activity;
 
 import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation.ConversationType;
 
 import com.app.yuqing.R;
-import com.app.yuqing.bean.UserBean;
+import com.app.yuqing.bean.UserOldBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
 import com.app.yuqing.net.bean.TokenBean;
@@ -13,7 +12,6 @@ import com.app.yuqing.utils.CommonUtils;
 import com.app.yuqing.utils.ImageLoaderUtil;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,7 +32,7 @@ public class UserDetailActivity extends BaseActivity {
 	
 	public static final String KEY_ID = "key_UserDetailActivity_id";
 	private String userId;
-	private UserBean userBean;
+	private UserOldBean userBean;
 	private TokenBean tokenBean;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +78,7 @@ public class UserDetailActivity extends BaseActivity {
 		}
 	}
 	
-	private void refreshView(UserBean bean) {
+	private void refreshView(UserOldBean bean) {
 		userBean = bean;
 		if (!TextUtils.isEmpty(bean.getPhoto())) {
 			ImageLoaderUtil.display(bean.getPhoto(),ivHead);

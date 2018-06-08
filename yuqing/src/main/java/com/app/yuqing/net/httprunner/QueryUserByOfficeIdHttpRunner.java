@@ -7,7 +7,6 @@ import com.app.yuqing.net.Event;
 import com.app.yuqing.net.OKHttpUtil;
 import com.app.yuqing.net.URLUtils;
 import com.app.yuqing.net.bean.ContactUserResponsebean;
-import com.app.yuqing.net.bean.VersionBean;
 import com.app.yuqing.utils.CommonUtils;
 
 public class QueryUserByOfficeIdHttpRunner extends HttpRunner {

@@ -92,17 +92,17 @@ public class OKHttpUtil {
     	System.out.println("URL:"+url);
         String responesStr;
         try{
-            Request request;
-            UserResponseBean token = PreManager.get(MyApplication.instance.getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
+            Request request = null;
+            String authorization = PreManager.getString(MyApplication.instance.getApplicationContext(),AppContext.KEY_TOKEN);
             if(type.equalsIgnoreCase("post")){
-                if (!needClearCookie && token != null && token.getUser() != null && !TextUtils.isEmpty(token.getUser().getToken())) {
-                    request=new Request.Builder().url(url).post(requestBody).addHeader("token",token.getUser().getToken()).build();
+                if (!needClearCookie && !TextUtils.isEmpty(authorization)) {
+                    request=new Request.Builder().url(url).post(requestBody).addHeader("Authorization",authorization).build();
                 } else {
                     request=new Request.Builder().url(url).post(requestBody).build();
                 }
             }else{
-                if (!needClearCookie && token != null && token.getUser() != null && !TextUtils.isEmpty(token.getUser().getToken())) {
-                    request=new Request.Builder().url(url).addHeader("token",token.getUser().getToken()).get().build();
+                if (!needClearCookie && !TextUtils.isEmpty(authorization)) {
+                    request=new Request.Builder().url(url).addHeader("Authorization",authorization).get().build();
                 } else {
                     request=new Request.Builder().url(url).get().build();
                 }

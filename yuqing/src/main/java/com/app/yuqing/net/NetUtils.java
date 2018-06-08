@@ -7,12 +7,15 @@ import com.app.yuqing.net.httprunner.GetuiTestHttpRunner;
 import com.app.yuqing.net.httprunner.JoinGroupHttpRunner;
 import com.app.yuqing.net.httprunner.LoginHttpRunner;
 import com.app.yuqing.net.httprunner.MenuListHttpRunner;
+import com.app.yuqing.net.httprunner.PersonalInfoHttpRunner;
 import com.app.yuqing.net.httprunner.QueryBacklogHttpRunner;
 import com.app.yuqing.net.httprunner.QueryGroupHttpRunner;
 import com.app.yuqing.net.httprunner.QueryGroupUserHttpRunner;
 import com.app.yuqing.net.httprunner.QueryLastVersionHttpRunner;
+import com.app.yuqing.net.httprunner.QueryUpgrageHttpRunner;
 import com.app.yuqing.net.httprunner.QueryUserByIdHttpRunner;
 import com.app.yuqing.net.httprunner.QueryUserByOfficeIdHttpRunner;
+import com.app.yuqing.net.httprunner.QueryUserHttpRunner;
 import com.app.yuqing.net.httprunner.QuitGroupHttpRunner;
 import com.app.yuqing.net.httprunner.SyncHttpRunner;
 import com.app.yuqing.net.httprunner.TreeDataHttpRunner;
@@ -45,6 +48,9 @@ public class NetUtils {
 		eventManager.registerEventRunner(EventCode.HTTP_UPDATECLIENTID, new UpdateClientIdHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_SYNC, new SyncHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_GETUITEST, new GetuiTestHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_PERSONALINFO, new PersonalInfoHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_QUERYUSER, new QueryUserHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_QUERYUPGRAGE, new QueryUpgrageHttpRunner());
 	}
 }
 

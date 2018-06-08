@@ -4,6 +4,12 @@ public class EventCode {
 	private static int BASECODE = 0;
 	
 	public static final int HTTP_LOGIN = ++BASECODE;
+
+	public static final int HTTP_PERSONALINFO = ++BASECODE;
+
+	public static final int HTTP_QUERYUSER = ++BASECODE;
+
+	public static final int HTTP_QUERYUPGRAGE = ++BASECODE;
 	
 	public static final int HTTP_QUERYLASTVERSION = ++BASECODE;
 	

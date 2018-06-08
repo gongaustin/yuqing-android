@@ -71,22 +71,22 @@ public class GroupDetailActivity extends BaseActivity {
 			}
 		});
 		
-		btnExit.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				UserResponseBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
-				if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId()) && groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId()) ) {
-					if (bean.getUser().getId().equals(groupBean.getCreateUser())) {
-						pushEventBlock(EventCode.HTTP_DISMISSGROUP, bean.getUser().getId(),groupBean.getGroupId());
-						return;
-					} else {
-						pushEventBlock(EventCode.HTTP_QUITGROUP, bean.getUser().getId(),groupBean.getGroupId());
-					}
-				}
-				
-			}
-		});
+//		btnExit.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				UserResponseBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
+//				if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId()) && groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId()) ) {
+//					if (bean.getUser().getId().equals(groupBean.getCreateUser())) {
+//						pushEventBlock(EventCode.HTTP_DISMISSGROUP, bean.getUser().getId(),groupBean.getGroupId());
+//						return;
+//					} else {
+//						pushEventBlock(EventCode.HTTP_QUITGROUP, bean.getUser().getId(),groupBean.getGroupId());
+//					}
+//				}
+//
+//			}
+//		});
 	}	
 	
 	private void initData() {
