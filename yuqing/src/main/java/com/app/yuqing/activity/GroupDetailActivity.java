@@ -7,9 +7,13 @@ import com.app.yuqing.AppContext;
 import com.app.yuqing.R;
 import com.app.yuqing.adapter.GroupUserAdapter;
 import com.app.yuqing.bean.GroupBean;
+import com.app.yuqing.bean.GroupInfoBean;
+import com.app.yuqing.bean.GroupMemberBean;
 import com.app.yuqing.bean.GroupUserBean;
+import com.app.yuqing.bean.PersonalBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.GroupInfoResponseBean;
 import com.app.yuqing.net.bean.GroupUserResponseBean;
 import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
@@ -33,10 +37,10 @@ public class GroupDetailActivity extends BaseActivity {
 	@ViewInject(R.id.btn_exit)
 	private Button btnExit;
 	
-	private List<GroupUserBean> dataList = new ArrayList<GroupUserBean>();
+	private List<GroupMemberBean> dataList = new ArrayList<GroupMemberBean>();
 	private GroupUserAdapter adapter;
 	public static final String KEY_GROUP = "key_GroupDetailActivity_group";
-	private GroupBean groupBean;
+	private GroupInfoBean groupBean;
 	
 	public static final String KEY_ADDRESULT = "key_GroupDetailActivity_addresult";
 	private static final int CODE_ADDUSER = 0x11;
@@ -71,30 +75,37 @@ public class GroupDetailActivity extends BaseActivity {
 			}
 		});
 		
-//		btnExit.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				UserResponseBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
-//				if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId()) && groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId()) ) {
-//					if (bean.getUser().getId().equals(groupBean.getCreateUser())) {
-//						pushEventBlock(EventCode.HTTP_DISMISSGROUP, bean.getUser().getId(),groupBean.getGroupId());
-//						return;
-//					} else {
-//						pushEventBlock(EventCode.HTTP_QUITGROUP, bean.getUser().getId(),groupBean.getGroupId());
-//					}
-//				}
-//
-//			}
-//		});
+		btnExit.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				PersonalBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, PersonalBean.class);
+				if (bean != null && !TextUtils.isEmpty(bean.getUserId()) && groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId()) ) {
+					if (bean.getUserId().equals(groupBean.getCreateUser())) {
+						pushEventBlock(EventCode.HTTP_DISMISSGROUP, groupBean.getGroupId(),bean.getUserId());
+						return;
+					} else {
+						pushEventBlock(EventCode.HTTP_QUITGROUP, groupBean.getGroupId());
+					}
+				}
+
+			}
+		});
 	}	
 	
 	private void initData() {
-		groupBean = (GroupBean) getIntent().getSerializableExtra(KEY_GROUP);
-		if (groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId())) {
-			pushEventNoProgress(EventCode.HTTP_QUERYGROUPUSER, groupBean.getGroupId());			
+		groupBean = (GroupInfoBean) getIntent().getSerializableExtra(KEY_GROUP);
+		refreshData();
+	}
+
+	private void refreshData() {
+		if (groupBean != null && groupBean.getMembers() != null) {
+			GroupMemberBean groupMemberBean = new GroupMemberBean();
+			groupMemberBean.setRealname("添加新成员");
+			groupBean.getMembers().add(groupMemberBean);
+			adapter.updateData(groupBean.getMembers());
 		}
-	}	
+	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -105,7 +116,7 @@ public class GroupDetailActivity extends BaseActivity {
 				if (data != null) {
 					String userId = data.getStringExtra(KEY_ADDRESULT);
 					if (!TextUtils.isEmpty(userId) && groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId())) {
-						pushEventBlock(EventCode.HTTP_JOINGROUP, userId,groupBean.getGroupId(),groupBean.getGroupName());
+						pushEventBlock(EventCode.HTTP_GROUPJOIN,groupBean.getGroupId(),userId);
 					}
 				}
 			}
@@ -116,27 +127,28 @@ public class GroupDetailActivity extends BaseActivity {
 	public void onEventRunEnd(Event event) {
 		// TODO Auto-generated method stub
 		super.onEventRunEnd(event);
-		if (event.getEventCode() == EventCode.HTTP_QUERYGROUPUSER) {
+		
+		if (event.getEventCode() == EventCode.HTTP_GROUPJOIN) {
 			if (event.isSuccess()) {
-				GroupUserResponseBean bean = (GroupUserResponseBean) event.getReturnParamAtIndex(0);
-				if (bean != null && bean.getUsers() != null) {
-					adapter.updateData(bean.getUsers());
-					adapter.addItem(new GroupUserBean());
+				if (groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId())) {
+					pushEventNoProgress(EventCode.HTTP_GETGROUPINFO, groupBean.getGroupId());			
 				}
 			} else {
 				CommonUtils.showToast(event.getFailMessage());
 			}
 		}
-		
-		if (event.getEventCode() == EventCode.HTTP_JOINGROUP) {
+
+		if (event.getEventCode() == EventCode.HTTP_GETGROUPINFO) {
 			if (event.isSuccess()) {
-				if (groupBean != null && !TextUtils.isEmpty(groupBean.getGroupId())) {
-					pushEventNoProgress(EventCode.HTTP_QUERYGROUPUSER, groupBean.getGroupId());			
+				GroupInfoResponseBean bean = (GroupInfoResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null && bean.getData() != null) {
+					groupBean = bean.getData();
+					refreshData();
 				}
 			} else {
 				CommonUtils.showToast(event.getFailMessage());
 			}
-		}	
+		}
 		
 		if (event.getEventCode() == EventCode.HTTP_QUITGROUP) {
 			if (event.isSuccess()) {

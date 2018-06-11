@@ -3,6 +3,7 @@ package com.app.yuqing.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.yuqing.R;
+import com.app.yuqing.bean.GroupMemberBean;
 import com.app.yuqing.bean.GroupUserBean;
 import com.app.yuqing.bean.MenuBean;
 import com.app.yuqing.bean.ZhiHuiType;
@@ -18,9 +20,9 @@ import com.app.yuqing.net.URLUtils;
 import com.app.yuqing.utils.ImageLoaderUtil;
 import com.app.yuqing.view.RoundImageView;
 
-public class GroupUserAdapter extends SetBaseAdapter<GroupUserBean>{
+public class GroupUserAdapter extends SetBaseAdapter<GroupMemberBean>{
 
-	public GroupUserAdapter(Context context, List<GroupUserBean> list) {
+	public GroupUserAdapter(Context context, List<GroupMemberBean> list) {
 		super(context, list);
 		// TODO Auto-generated constructor stub
 	}
@@ -37,15 +39,17 @@ public class GroupUserAdapter extends SetBaseAdapter<GroupUserBean>{
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		GroupUserBean bean = mList.get(position);
-		if (!TextUtils.isEmpty(bean.getName())) {
-			holder.tvName.setText(bean.getName());
+		GroupMemberBean bean = mList.get(position);
+		if (!TextUtils.isEmpty(bean.getRealname())) {
+			holder.tvName.setText(bean.getRealname()+"("+bean.getDeptName()+")");
 		}
 		
-		if (TextUtils.isEmpty(bean.getId())) {
+		if (TextUtils.isEmpty(bean.getUserid())) {
 			holder.ivHead.setImageResource(R.drawable.icon_add);
-		} else if (!TextUtils.isEmpty(bean.getPhoto())) {
-			ImageLoaderUtil.display(URLUtils.PIC_SERVER + bean.getPhoto(), holder.ivHead);
+			holder.tvName.setText(bean.getRealname());
+			holder.tvName.setTextColor(Color.BLUE);
+		} else if (!TextUtils.isEmpty(bean.getAvatar())) {
+			ImageLoaderUtil.display(bean.getAvatar(), holder.ivHead);
 		} else {
 			holder.ivHead.setImageResource(R.drawable.rc_default_group_portrait);
 		}

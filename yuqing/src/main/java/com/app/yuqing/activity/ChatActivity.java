@@ -7,9 +7,12 @@ import io.rong.imlib.model.Conversation;
 import com.app.yuqing.AppContext;
 import com.app.yuqing.R;
 import com.app.yuqing.bean.GroupBean;
+import com.app.yuqing.bean.GroupInfoBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.GroupInfoResponseBean;
 import com.app.yuqing.net.bean.GroupListResponseBean;
+import com.app.yuqing.net.bean.PersonalInfoResponseBean;
 import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 import com.app.yuqing.utils.PreManager;
@@ -31,16 +34,21 @@ public class ChatActivity extends BaseActivity {
      */
     private String targetId;
     
-    private GroupBean groupBean;
+    private GroupInfoBean groupBean;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		initView();
 		initListener();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		initData();
 	}
-	
+
 	private void initView() {
 		addBack(R.id.rl_back);
 		targetId = getIntent().getData().getQueryParameter("targetId");//id
@@ -88,13 +96,19 @@ public class ChatActivity extends BaseActivity {
 	}	
 	
 	private void initData() {
-		UserResponseBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
-//		if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId())) {
-//			pushEvent(EventCode.HTTP_QUERYGROUP, bean.getUser().getId());
-//		}
+		if (mConversationType.equals(Conversation.ConversationType.GROUP)) {
+			if (!TextUtils.isEmpty(targetId)) {
+				pushEventNoProgress(EventCode.HTTP_GETGROUPINFO,targetId);
+			}
+		} else if (mConversationType.equals(Conversation.ConversationType.PRIVATE)) {
+			if (!TextUtils.isEmpty(targetId)) {
+				pushEvent(EventCode.HTTP_USERINFOBYUSERID, targetId);
+			}
+		}
+
 	}
 	
-	private void refreshView(GroupBean bean) {
+	private void refreshView(GroupInfoBean bean) {
 		setTitle(bean.getGroupName());
 		groupBean = bean;
 	}
@@ -103,15 +117,22 @@ public class ChatActivity extends BaseActivity {
 	public void onEventRunEnd(Event event) {
 		// TODO Auto-generated method stub
 		super.onEventRunEnd(event);
-		if (event.getEventCode() == EventCode.HTTP_QUERYGROUP) {
+		if (event.getEventCode() == EventCode.HTTP_GETGROUPINFO) {
 			if (event.isSuccess()) {
-				GroupListResponseBean bean = (GroupListResponseBean) event.getReturnParamAtIndex(0);
-				if (bean != null && bean.getGroups() != null) {
-					for(GroupBean gb : bean.getGroups()) {
-						if (gb.getGroupId().equals(targetId)) {
-							refreshView(gb);
-						}
-					}
+				GroupInfoResponseBean bean = (GroupInfoResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null && bean.getData() != null) {
+					refreshView(bean.getData());
+				}
+			} else {
+				CommonUtils.showToast(event.getFailMessage());
+			}
+		}
+
+		if (event.getEventCode() == EventCode.HTTP_USERINFOBYUSERID) {
+			if (event.isSuccess()) {
+				PersonalInfoResponseBean bean = (PersonalInfoResponseBean) event.getReturnParamAtIndex(0);
+				if (bean.getData() != null) {
+					setTitle(bean.getData().getRealname());
 				}
 			} else {
 				CommonUtils.showToast(event.getFailMessage());

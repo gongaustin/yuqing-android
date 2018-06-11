@@ -14,6 +14,15 @@ public class UserBean extends BaseBean {
     private String email;
     private String username;
     private String realname;
+    private boolean isSelected = false;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getDeptName() {
         return deptName;

@@ -24,7 +24,7 @@
 			     android:layout_height="wrap_content"
 			     android:gravity="start"
 			     android:listSelector="@android:color/transparent"
-			     android:numColumns="5"
+			     android:numColumns="4"
 			     android:verticalSpacing="25dp"
 			     android:background="@color/white"
 			     android:paddingTop="15dp"

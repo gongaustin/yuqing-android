@@ -8,6 +8,7 @@ import com.app.yuqing.AppContext;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.OKHttpUtil;
 import com.app.yuqing.net.URLUtils;
+import com.app.yuqing.net.bean.BaseResponseBean;
 import com.app.yuqing.net.bean.GroupListResponseBean;
 import com.app.yuqing.net.bean.JoinGropResponseBean;
 import com.app.yuqing.utils.CommonUtils;
@@ -17,16 +18,14 @@ public class JoinGroupHttpRunner extends HttpRunner {
 	@Override
 	public void onEventRun(Event event) throws Exception {
 		// TODO Auto-generated method stub
-		String userId = (String) event.getParamAtIndex(0);
-		String groupId = (String) event.getParamAtIndex(1);
-		String groupName = (String) event.getParamAtIndex(2);
+		String gid = (String) event.getParamAtIndex(0);
+		String userIds = (String) event.getParamAtIndex(1);
 		
         RequestBody body=new FormBody.Builder()
-        .add("userId",userId)
-        .add("groupId",groupId)
-        .add("groupName",groupName).build();
+        .add("gid",gid)
+        .add("userIds",userIds).build();
         
-        String result = OKHttpUtil.getInstance().request(URLUtils.JOINGROUP, body, "post",false);
+        String result = OKHttpUtil.getInstance().request(URLUtils.GROUPJOIN, body, "post",false);
 		
 		Log.i(AppContext.LOG_NET, result);
 		System.out.println("result : "+result);
@@ -35,22 +34,15 @@ public class JoinGroupHttpRunner extends HttpRunner {
 			event.setFailException(new Exception("网络错误"));
 			return;
 		}
-		
-		
-		if ("false".equals(result)) {
+
+		BaseResponseBean bean = gson.fromJson(result, BaseResponseBean.class);
+		if (!bean.isSuccess()) {
 			event.setSuccess(false);
-			event.setFailException(new Exception("创建失败"));
+			event.setFailException(new Exception(bean.getMsg()));
 		} else {
-			JoinGropResponseBean bean = gson.fromJson(result, JoinGropResponseBean.class);
-			if (bean != null) {
-				if (checkRongYun(bean)) {
-					event.setSuccess(true);
-					event.addReturnParam(bean);
-					return;
-				}
-			}
-			event.setSuccess(false);
-		}	
+			event.setSuccess(true);
+			event.addReturnParam(bean);
+		}
 	}
 
 }

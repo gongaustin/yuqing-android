@@ -106,22 +106,15 @@ public class YuQingIntentService extends GTIntentService{
 
 	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	private void sendMessage(MessageDataBean mdb) {
-		if (mdb == null || TextUtils.isEmpty(mdb.getContent())) return;
-		MessageContentDataBean mcd = gson.fromJson(mdb.getContent(),MessageContentDataBean.class);
-		if (mcd == null) return;
+		if (mdb == null ) return;
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		Intent dataIntent = new Intent(this,UrlWebClientActivity.class);
-		UserResponseBean token = PreManager.get(MyApplication.instance.getApplicationContext(), AppContext.KEY_LOGINUSER,UserResponseBean.class);
-		String url = mcd.getUrl();
-//		if (token != null && token.getUser() != null && !TextUtils.isEmpty(token.getUser().getToken())) {
-//			url = url + "?token="+token.getUser().getToken();
-//		}
-		dataIntent.putExtra(UrlWebClientActivity.KEY_URL,url);
+		dataIntent.putExtra(UrlWebClientActivity.KEY_URL,mdb.getUrl());
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, dataIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		Notification notification = new Notification.Builder(this)
 				.setSmallIcon(R.drawable.logo)//设置小图标
-				.setContentTitle(mcd.getTitle())
-				.setContentText(mcd.getContent())
+				.setContentTitle(mdb.getTitle())
+				.setContentText(mdb.getContent())
 				.setAutoCancel(true)
 				.setContentIntent(pendingIntent)
 				.setDefaults(Notification.DEFAULT_SOUND|Notification.DEFAULT_VIBRATE)

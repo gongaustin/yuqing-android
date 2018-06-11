@@ -3,9 +3,11 @@ package com.app.yuqing.activity;
 import io.rong.imkit.RongIM;
 
 import com.app.yuqing.R;
+import com.app.yuqing.bean.PersonalBean;
 import com.app.yuqing.bean.UserOldBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.PersonalInfoResponseBean;
 import com.app.yuqing.net.bean.TokenBean;
 import com.app.yuqing.net.bean.UserDetailResponseBean;
 import com.app.yuqing.utils.CommonUtils;
@@ -32,8 +34,7 @@ public class UserDetailActivity extends BaseActivity {
 	
 	public static final String KEY_ID = "key_UserDetailActivity_id";
 	private String userId;
-	private UserOldBean userBean;
-	private TokenBean tokenBean;
+	private PersonalBean userBean;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -61,12 +62,11 @@ public class UserDetailActivity extends BaseActivity {
 			
 			@Override
 			public void onClick(View v) {
-				if (userBean == null || tokenBean == null) {
+				if (userBean == null) {
 					CommonUtils.showToast("信息为空");
 					return;
 				}
-				RongIM.getInstance().startPrivateChat(UserDetailActivity.this, tokenBean.getUserId(), userBean.getName());
-//				RongIM.getInstance().startConversation(UserDetailActivity.this, ConversationType.PRIVATE, tokenBean.getUserId(), userBean.getName());
+				RongIM.getInstance().startPrivateChat(UserDetailActivity.this, userBean.getUserId(), userBean.getRealname());
 			}
 		});
 	}
@@ -74,35 +74,34 @@ public class UserDetailActivity extends BaseActivity {
 	private void initData() {
 		userId = getIntent().getStringExtra(KEY_ID);
 		if (!TextUtils.isEmpty(userId)) {
-			pushEvent(EventCode.HTTP_QUERYUSERBYID, userId);			
+			pushEvent(EventCode.HTTP_USERINFOBYUSERID, userId);
 		}
 	}
 	
-	private void refreshView(UserOldBean bean) {
+	private void refreshView(PersonalBean bean) {
 		userBean = bean;
-		if (!TextUtils.isEmpty(bean.getPhoto())) {
-			ImageLoaderUtil.display(bean.getPhoto(),ivHead);
+		if (!TextUtils.isEmpty(bean.getAvatar())) {
+			ImageLoaderUtil.display(bean.getAvatar(),ivHead);
 		}
-		if (!TextUtils.isEmpty(bean.getLoginName())) {
-			tvUserName.setText(bean.getName());
-			setTitle(bean.getName());
+		if (!TextUtils.isEmpty(bean.getRealname())) {
+			tvUserName.setText(bean.getRealname());
+			setTitle(bean.getRealname());
 		}
-		if (!TextUtils.isEmpty(bean.getMobile())) {
-			tvNumber.setText(bean.getMobile());
+		if (!TextUtils.isEmpty(bean.getPhone())) {
+			tvNumber.setText(bean.getPhone());
 		}
-		if (!TextUtils.isEmpty(bean.getRoleNames())) {
-			tvRole.setText(bean.getRoleNames());
+		if (!TextUtils.isEmpty(bean.getDeptName())) {
+			tvRole.setText(bean.getDeptName());
 		}
-		pushEventNoProgress(EventCode.HTTP_GETTOKEN, bean.getId(),bean.getName(),bean.getPhoto());
 	}
 	
 	@Override
 	public void onEventRunEnd(Event event) {
 		// TODO Auto-generated method stub
 		super.onEventRunEnd(event);
-		if (event.getEventCode() == EventCode.HTTP_QUERYUSERBYID) {
+		if (event.getEventCode() == EventCode.HTTP_USERINFOBYUSERID) {
 			if (event.isSuccess()) {
-				UserDetailResponseBean bean = (UserDetailResponseBean) event.getReturnParamAtIndex(0);
+				PersonalInfoResponseBean bean = (PersonalInfoResponseBean) event.getReturnParamAtIndex(0);
 				if (bean.getData() != null) {
 					refreshView(bean.getData());
 				}
@@ -110,16 +109,5 @@ public class UserDetailActivity extends BaseActivity {
 				CommonUtils.showToast(event.getFailMessage());
 			}
 		}
-		
-		if (event.getEventCode() == EventCode.HTTP_GETTOKEN) {
-			if (event.isSuccess()) {
-				TokenBean bean = (TokenBean) event.getReturnParamAtIndex(0);
-				if (bean != null) {
-					tokenBean = bean;
-				}
-			} else {
-				CommonUtils.showToast(event.getFailMessage());
-			}
-		}			
 	}
 }

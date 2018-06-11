@@ -8,6 +8,16 @@ public class GroupBean extends BaseBean {
 	private String isNewRecord;
 	private String groupName;
 	private String createUser;
+	private String createTime;
+
+	public String getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
 	public String getCreateUser() {
 		return createUser;
 	}

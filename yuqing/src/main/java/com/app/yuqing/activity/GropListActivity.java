@@ -11,6 +11,7 @@ import com.app.yuqing.adapter.GroupAdapter;
 import com.app.yuqing.bean.GroupBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.GetGroupsResponseBean;
 import com.app.yuqing.net.bean.GroupListResponseBean;
 import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
@@ -58,28 +59,29 @@ public class GropListActivity extends BaseActivity {
 					int position, long id) {
 				GroupBean bean = dataList.get(position);
 				if (bean != null && !TextUtils.isEmpty(bean.getGroupId())) {
-					RongIM.getInstance().startGroupChat(GropListActivity.this, bean.getGroupId(), bean.getGroupId());					
+					RongIM.getInstance().startGroupChat(GropListActivity.this, bean.getGroupId(), bean.getGroupName());
 				}
 			}
 		});
 	}
 	
 	private void initData() {
-		UserResponseBean bean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, UserResponseBean.class);
-//		if (bean != null && bean.getUser() != null && !TextUtils.isEmpty(bean.getUser().getId())) {
-//			pushEvent(EventCode.HTTP_QUERYGROUP, bean.getUser().getId());
-//		}
+		pushEvent(EventCode.HTTP_GETCREATEDGROUPS);
 	}
 	
 	@Override
 	public void onEventRunEnd(Event event) {
 		// TODO Auto-generated method stub
 		super.onEventRunEnd(event);
-		if (event.getEventCode() == EventCode.HTTP_QUERYGROUP) {
+
+		if (event.getEventCode() == EventCode.HTTP_GETCREATEDGROUPS) {
 			if (event.isSuccess()) {
-				GroupListResponseBean bean = (GroupListResponseBean) event.getReturnParamAtIndex(0);
-				if (bean != null && bean.getGroups() != null) {
-					adapter.updateData(bean.getGroups());
+				GetGroupsResponseBean bean = (GetGroupsResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null && bean.getData() != null && bean.getData().size() > 0) {
+					adapter.updateData(bean.getData());
+					for (GroupBean groupBean : bean.getData()) {
+						PreManager.putString(getApplicationContext(),groupBean.getGroupId(),groupBean.getGroupName());
+					}
 				}
 			} else {
 				CommonUtils.showToast(event.getFailMessage());

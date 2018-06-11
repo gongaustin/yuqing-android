@@ -29,7 +29,7 @@ public class QueryGroupHttpRunner extends HttpRunner {
 			event.setFailException(new Exception("网络错误"));
 			return;
 		}
-		
+
 		
 		if ("false".equals(result)) {
 			event.setSuccess(false);

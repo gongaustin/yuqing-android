@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 import com.app.yuqing.R;
 import com.app.yuqing.bean.ContactUser;
+import com.app.yuqing.bean.UserBean;
 import com.app.yuqing.utils.ImageLoaderUtil;
 import com.app.yuqing.view.RoundImageView;
 
-public class CreateGroupAdapter extends SetBaseAdapter<ContactUser>{
+public class CreateGroupAdapter extends SetBaseAdapter<UserBean>{
 
-	public CreateGroupAdapter(Context context, List<ContactUser> list) {
+	public CreateGroupAdapter(Context context, List<UserBean> list) {
 		super(context, list);
 		// TODO Auto-generated constructor stub
 	}
@@ -36,10 +37,10 @@ public class CreateGroupAdapter extends SetBaseAdapter<ContactUser>{
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		ContactUser bean = mList.get(position);
-		holder.tvName.setText(bean.getName());
-		if (!TextUtils.isEmpty(bean.getPhoto())) {
-			ImageLoaderUtil.display(bean.getPhoto(), holder.ivHead);
+		UserBean bean = mList.get(position);
+		holder.tvName.setText(bean.getRealname()+"("+bean.getDeptName()+")");
+		if (!TextUtils.isEmpty(bean.getAvatar())) {
+			ImageLoaderUtil.display(bean.getAvatar(), holder.ivHead);
 		}
 		if (bean.isSelected()) {
 			holder.ivSelect.setSelected(true);

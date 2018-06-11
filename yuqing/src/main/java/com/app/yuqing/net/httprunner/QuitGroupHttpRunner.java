@@ -8,6 +8,7 @@ import com.app.yuqing.AppContext;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.OKHttpUtil;
 import com.app.yuqing.net.URLUtils;
+import com.app.yuqing.net.bean.BaseResponseBean;
 import com.app.yuqing.net.bean.GroupUserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 
@@ -16,12 +17,10 @@ public class QuitGroupHttpRunner extends HttpRunner {
 	@Override
 	public void onEventRun(Event event) throws Exception {
 		// TODO Auto-generated method stub
-		String userId = (String) event.getParamAtIndex(0);
-		String groupId = (String) event.getParamAtIndex(1);
+		String gid = (String) event.getParamAtIndex(0);
 		
         RequestBody body=new FormBody.Builder()
-        .add("groupId",groupId)
-        .add("userId",userId).build();
+        .add("gid",gid).build();
         
         String result = OKHttpUtil.getInstance().request(URLUtils.QUITGROUP, body, "post",false);
 		
@@ -32,21 +31,15 @@ public class QuitGroupHttpRunner extends HttpRunner {
 			event.setFailException(new Exception("网络错误"));
 			return;
 		}
-		
-		if ("false".equals(result)) {
+
+		BaseResponseBean bean = gson.fromJson(result, BaseResponseBean.class);
+		if (!bean.isSuccess()) {
 			event.setSuccess(false);
-			event.setFailException(new Exception("创建失败"));
+			event.setFailException(new Exception(bean.getMsg()));
 		} else {
-			GroupUserResponseBean bean = gson.fromJson(result, GroupUserResponseBean.class);
-			if (bean != null) {
-				if (checkRongYun(bean)) {
-					event.setSuccess(true);
-					event.addReturnParam(bean);
-					return;
-				}
-			}
-			event.setSuccess(false);
-		}	
+			event.setSuccess(true);
+			event.addReturnParam(bean);
+		}
 	}
 
 }

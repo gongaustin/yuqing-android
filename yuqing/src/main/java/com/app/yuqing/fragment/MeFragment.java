@@ -280,7 +280,7 @@ public class MeFragment extends BaseFragment {
 				if (tmpPhoto != null) {
 					File file = ImageUtil.inputStreamToFile(tmpPhoto);
 					headFile = file;
-					pushEvent(EventCode.HTTP_UPDATEHEAD, headFile);
+					pushEventBlock(EventCode.HTTP_UPLOADFILE, headFile);
 				}
 			}
 			break;
@@ -365,6 +365,10 @@ public class MeFragment extends BaseFragment {
 			} else {
 				CommonUtils.showToast(event.getFailMessage());
 			}
+		}
+
+		if (event.getEventCode() == EventCode.HTTP_UPLOADFILE) {
+
 		}
 	}
 }

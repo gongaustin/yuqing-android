@@ -25,6 +25,7 @@ import com.app.yuqing.view.VersionUpdateDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -196,7 +197,6 @@ public class MainActivity extends BaseActivity {
     
     public void getData() {
     	pushEventNoProgress(EventCode.HTTP_QUERYUPGRAGE,AppContext.APPID,CommonUtils.getVersion());
-    	
     	loginBean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, PersonalBean.class);
 //		if (loginBean != null && loginBean.getUser() != null && !TextUtils.isEmpty(loginBean.getUser().getId())) {
 //			pushEvent(EventCode.HTTP_QUERYGROUP, loginBean.getUser().getId());
@@ -213,6 +213,7 @@ public class MainActivity extends BaseActivity {
 				if (bean != null && bean.getData() != null) {
 					if (!CommonUtils.checkVersionIsSame(bean.getData().getNewVersion())) {
 						meFragment.tvVersion.setText("有新版本");
+                        meFragment.tvVersion.setTextColor(Color.BLUE);
 						if (versionUpdateDialog == null) {
 							versionUpdateDialog = new VersionUpdateDialog(MainActivity.this);
 						}
@@ -231,6 +232,7 @@ public class MainActivity extends BaseActivity {
 						versionUpdateDialog.show();
 					} else {
 						meFragment.tvVersion.setText("已经是最新版本");
+                        meFragment.tvVersion.setTextColor(Color.BLACK);
 					}
 				}
 			} else {

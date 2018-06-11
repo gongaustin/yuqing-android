@@ -10,6 +10,22 @@ public class EventCode {
 	public static final int HTTP_QUERYUSER = ++BASECODE;
 
 	public static final int HTTP_QUERYUPGRAGE = ++BASECODE;
+
+	public static final int HTTP_MODIFYPHONENUMBER = ++BASECODE;
+
+    public static final int HTTP_MODIFYAVATAR = ++BASECODE;
+
+	public static final int HTTP_GROUPCREATE = ++BASECODE;
+
+	public static final int HTTP_GETCREATEDGROUPS = ++BASECODE;
+
+	public static final int HTTP_GETGROUPINFO = ++BASECODE;
+
+	public static final int HTTP_GROUPJOIN = ++BASECODE;
+
+	public static final int HTTP_USERINFOBYUSERID = ++BASECODE;
+
+
 	
 	public static final int HTTP_QUERYLASTVERSION = ++BASECODE;
 	
@@ -48,5 +64,7 @@ public class EventCode {
 	public static final int HTTP_SYNC = ++BASECODE;
 
 	public static final int HTTP_GETUITEST = ++BASECODE;
+
+	public static final int HTTP_UPLOADFILE = ++BASECODE;
 }
 

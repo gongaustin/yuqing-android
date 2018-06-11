@@ -2,11 +2,16 @@ package com.app.yuqing.net;
 
 import com.app.yuqing.net.httprunner.CreateGroupHttpRunner;
 import com.app.yuqing.net.httprunner.DismissGroupHttpRunner;
+import com.app.yuqing.net.httprunner.GetCreatedGroupsHttpRunner;
+import com.app.yuqing.net.httprunner.GetGroupInfoHttpRunner;
 import com.app.yuqing.net.httprunner.GetTokenHttpRunner;
 import com.app.yuqing.net.httprunner.GetuiTestHttpRunner;
+import com.app.yuqing.net.httprunner.GroupCreateHttpRunner;
 import com.app.yuqing.net.httprunner.JoinGroupHttpRunner;
 import com.app.yuqing.net.httprunner.LoginHttpRunner;
 import com.app.yuqing.net.httprunner.MenuListHttpRunner;
+import com.app.yuqing.net.httprunner.ModifyAvatarHttpRunner;
+import com.app.yuqing.net.httprunner.ModifyPhoneNumberHttpRunner;
 import com.app.yuqing.net.httprunner.PersonalInfoHttpRunner;
 import com.app.yuqing.net.httprunner.QueryBacklogHttpRunner;
 import com.app.yuqing.net.httprunner.QueryGroupHttpRunner;
@@ -23,6 +28,8 @@ import com.app.yuqing.net.httprunner.UpdateClientIdHttpRunner;
 import com.app.yuqing.net.httprunner.UpdateHeadHttpRunner;
 import com.app.yuqing.net.httprunner.UpdateMobileHttpRunner;
 import com.app.yuqing.net.httprunner.UpdatePasswordHttpRunner;
+import com.app.yuqing.net.httprunner.UploadFileHttpRunner;
+import com.app.yuqing.net.httprunner.UserInfoByUserIdHttpRunner;
 
 public class NetUtils {
 	
@@ -42,7 +49,7 @@ public class NetUtils {
 		eventManager.registerEventRunner(EventCode.HTTP_CREATEGROUP, new CreateGroupHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_QUERYGROUP, new QueryGroupHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_QUERYGROUPUSER, new QueryGroupUserHttpRunner());
-		eventManager.registerEventRunner(EventCode.HTTP_JOINGROUP, new JoinGroupHttpRunner());
+//		eventManager.registerEventRunner(EventCode.HTTP_JOINGROUP, new JoinGroupHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_QUITGROUP, new QuitGroupHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_DISMISSGROUP, new DismissGroupHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_UPDATECLIENTID, new UpdateClientIdHttpRunner());
@@ -51,6 +58,14 @@ public class NetUtils {
 		eventManager.registerEventRunner(EventCode.HTTP_PERSONALINFO, new PersonalInfoHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_QUERYUSER, new QueryUserHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_QUERYUPGRAGE, new QueryUpgrageHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_MODIFYPHONENUMBER, new ModifyPhoneNumberHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_MODIFYAVATAR, new ModifyAvatarHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_UPLOADFILE, new UploadFileHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_GROUPCREATE, new GroupCreateHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_GETCREATEDGROUPS, new GetCreatedGroupsHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_GETGROUPINFO, new GetGroupInfoHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_GROUPJOIN, new JoinGroupHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_USERINFOBYUSERID, new UserInfoByUserIdHttpRunner());
 	}
 }
 

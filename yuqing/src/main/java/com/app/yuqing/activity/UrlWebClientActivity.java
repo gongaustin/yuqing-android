@@ -1,6 +1,7 @@
 package com.app.yuqing.activity;
 
 import com.app.yuqing.AppContext;
+import com.app.yuqing.fragment.WorkNewFragment;
 import com.app.yuqing.utils.ImageUtil;
 import com.app.yuqing.utils.MonitorWebClient;
 import com.app.yuqing.utils.PreManager;
@@ -23,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -36,6 +38,8 @@ import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -51,6 +55,7 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 
 	@ViewInject(R.id.webview)
 	private WebView webView;
+
 	public static final String KEY_URL = "url";
 	private static final String KEY_PRE = "http://";
 
@@ -63,29 +68,27 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 
 	// permission Code
 	private static final int P_CODE_PERMISSIONS = 101;
-
-	private String initUrl = "";
-	private boolean isFirstUrl = true;
-	private static final String BACK_URL = "qc://back";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		initView();
+	}
+
+	private void initView() {
 		requestPermissionsAndroidM();
 		String url = getIntent().getStringExtra(KEY_URL);
 		url = dealUrl(url);
-		if (!TextUtils.isEmpty(url) && url.contains("?token=")) {
-			initUrl = url.substring(0,url.indexOf("?token="));
-		}
 		WebSettings webSettings = webView.getSettings();
 		initWebviewSet(webSettings);
 		initWebView(webView);
 		fixDirPath();
 		if (TextUtils.isEmpty(url)) {
-			Toast.makeText(this, "链接为空", Toast.LENGTH_LONG).show();
+			Toast.makeText(UrlWebClientActivity.this, "链接为空", Toast.LENGTH_LONG).show();
 		} else {
-			webView.loadUrl(url);			
+			String token = PreManager.getString(UrlWebClientActivity.this.getApplicationContext(),AppContext.KEY_TOKEN);
+			webView.loadUrl("javascript:document.cookie='token="+token+"';");
+			webView.loadUrl(url);
 		}
-
 	}
 
 	private void initWebviewSet(WebSettings webSettings) {
@@ -94,13 +97,14 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		// 设置支持本地存储
 		webSettings.setDatabaseEnabled(true);
 		//取得缓存路径
-		String path = getApplicationContext().getDir("cache", Context.MODE_PRIVATE).getPath();
+		String path = UrlWebClientActivity.this.getApplicationContext().getDir("cache", Context.MODE_PRIVATE).getPath();
 		//设置路径
 		webSettings.setDatabasePath(path);
 		//设置支持DomStorage
 		webSettings.setDomStorageEnabled(true);
 		//设置存储模式
 		webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+//        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 		//设置适应屏幕
 		webSettings.setUseWideViewPort(true);
 		webSettings.setLoadWithOverviewMode(true);
@@ -110,17 +114,20 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		webSettings.setDisplayZoomControls(false);
 		//设置缓存
 		webSettings.setAppCacheEnabled(true);
+
+		//如果访问的页面中有Javascript，则webview必须设置支持Javascript
+		webSettings.setAllowFileAccess(true);
 	}
 
 	private void initWebView(WebView wView) {
 		wView.requestFocus();
 		//下面三个各种监听
-		wView.setWebChromeClient(new MyWebChomeClient(UrlWebClientActivity.this));
+		wView.setWebChromeClient(new MyWebChomeClient(this));
 		wView.setWebViewClient(new MyWebViewClient());
 		wView.setDownloadListener(new MyWebViewDownLoadListener());
 //		wView.setWebViewClient(new MonitorWebClient(webView,this));
 	}
-	
+
 	public String dealUrl(String url) {
 		if (!TextUtils.isEmpty(url)) {
 			if (!url.startsWith(KEY_PRE)) {
@@ -130,17 +137,6 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		return url;
 	}
 
-    @Override
-    // 设置回退
-    // 覆盖Activity类的onKeyDown(int keyCoder,KeyEvent event)方法
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-			webView.goBack(); // goBack()表示返回WebView的上一页面
-            return true;
-        }
-        return super.onKeyDown(keyCode,event);
-    }
-
 	private void fixDirPath() {
 		String path = com.app.yuqing.utils.webview.ImageUtil.getDirPath();
 		File file = new File(path);
@@ -149,7 +145,7 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		}
 	}
 
-    //*************************   权限开始    ****************************//
+	//*************************   权限开始    ****************************//
 	private void requestPermissionsAndroidM() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			List<String> needPermissionList = new ArrayList<>();
@@ -226,7 +222,8 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 			mUploadMsgForAndroid5 = null;
 		}
 	}
-    //****************************   开始WEBChomeClient   **************************//
+
+	//****************************   开始WEBChomeClient   **************************//
 
 
 	@Override
@@ -244,7 +241,7 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 	}
 
 	public void showOptions() {
-		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(UrlWebClientActivity.this);
 		alertDialog.setOnCancelListener(new DialogOnCancelListener());
 
 		alertDialog.setTitle("请选择操作");
@@ -355,31 +352,33 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		}
 
 		@Override
+		public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+			return super.shouldInterceptRequest(view, url);
+		}
+
+		@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+		@Override
+		public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+			String url = request.getUrl().toString();
+			return super.shouldInterceptRequest(view, request);
+		}
+
+		@Override
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
 			System.out.println("WebView url:"+url);
-			if (!isFirstUrl && url.equals(initUrl)) {
-				finish();
-				return true;
-			}
-			if (isFirstUrl) {
-				initUrl = url;
-				isFirstUrl = false;
-			}
-			if (url.equals(BACK_URL)){
-				finish();
-				return true;
-			}
+			String token = PreManager.getString(UrlWebClientActivity.this.getApplicationContext(),AppContext.KEY_TOKEN);
+			view.loadUrl("javascript:document.cookie='token="+token+"';");
 			view.loadUrl(url);
 			return true;
 		}
 
 		@Override
 		public void onPageFinished(WebView view, String url) {
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-				CookieSyncManager.getInstance().sync();
-			} else {
-				CookieManager.getInstance().flush();
-			}
+//            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//                CookieSyncManager.getInstance().sync();
+//            } else {
+//                CookieManager.getInstance().flush();
+//            }
 		}
 	}
 
@@ -407,7 +406,7 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 							return;
 						}
 
-						String sourcePath = com.app.yuqing.utils.webview.ImageUtil.retrievePath(this, mSourceIntent, data);
+						String sourcePath = com.app.yuqing.utils.webview.ImageUtil.retrievePath(UrlWebClientActivity.this, mSourceIntent, data);
 
 						if (TextUtils.isEmpty(sourcePath) || !new File(sourcePath).exists()) {
 							Log.e(AppContext.TAG, "sourcePath empty or not exists.");
@@ -421,7 +420,7 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 							return;
 						}
 
-						String sourcePath = com.app.yuqing.utils.webview.ImageUtil.retrievePath(this, mSourceIntent, data);
+						String sourcePath = com.app.yuqing.utils.webview.ImageUtil.retrievePath(UrlWebClientActivity.this, mSourceIntent, data);
 
 						if (TextUtils.isEmpty(sourcePath) || !new File(sourcePath).exists()) {
 							Log.e(AppContext.TAG, "sourcePath empty or not exists.");
@@ -439,4 +438,21 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 	}
 
 	//****************************   结束处理回调数据   **************************//
+
+	//****************************   处理cookie开始   **************************//
+	private void syncCookie(Context context, String url){
+		String token = PreManager.getString(context,AppContext.KEY_TOKEN);
+		CookieManager cookieManager = CookieManager.getInstance();
+		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+			cookieManager.removeSessionCookies(null);
+			cookieManager.flush();
+		} else {
+			cookieManager.removeSessionCookie();
+			CookieSyncManager.getInstance().sync();
+		}
+		cookieManager.setAcceptCookie(true);
+		//设置Cookie
+		CookieSyncManager.getInstance().sync();
+	}
+
 }

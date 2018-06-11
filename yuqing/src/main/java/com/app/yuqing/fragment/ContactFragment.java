@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
@@ -28,6 +29,9 @@ import com.app.yuqing.net.bean.QueryUserResponseBean;
 import com.app.yuqing.net.bean.TreeDataResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 public class ContactFragment extends BaseFragment {
 
@@ -90,6 +94,12 @@ public class ContactFragment extends BaseFragment {
 					dataList.clear();
 					dataList.addAll(bean.getData());
 					adapter.notifyDataSetChanged();
+
+					for(UserBean userBean : bean.getData()) {
+						Uri headUri = Uri.parse(userBean.getAvatar());
+						UserInfo userInfo = new UserInfo(userBean.getUserId(), userBean.getRealname(),headUri);
+						RongIM.getInstance().setCurrentUserInfo(userInfo);
+					}
 				}
 			} else {
 				CommonUtils.showToast(event.getFailMessage());

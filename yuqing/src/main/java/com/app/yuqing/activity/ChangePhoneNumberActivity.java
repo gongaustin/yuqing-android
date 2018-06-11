@@ -5,6 +5,7 @@ import com.app.yuqing.R;
 import com.app.yuqing.bean.UserOldBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.BaseResponseBean;
 import com.app.yuqing.net.bean.UpdatePhoneResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 import com.app.yuqing.utils.PreManager;
@@ -20,6 +21,8 @@ public class ChangePhoneNumberActivity extends BaseActivity{
 
 	@ViewInject(R.id.edt_phone)
 	private EditText edtPhone;
+	@ViewInject(R.id.edt_pwd)
+	private EditText edtPwd;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +45,12 @@ public class ChangePhoneNumberActivity extends BaseActivity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (TextUtils.isEmpty(edtPhone.getText().toString())) {
+				if (TextUtils.isEmpty(edtPhone.getText().toString())
+						|| TextUtils.isEmpty(edtPwd.getText().toString())) {
 					CommonUtils.showToast("请输入完整");
 					return;
 				}
-				pushEventBlock(EventCode.HTTP_UPDATEMOBILE, edtPhone.getText().toString());
+				pushEventBlock(EventCode.HTTP_MODIFYPHONENUMBER, edtPhone.getText().toString(),edtPwd.getText().toString());
 			}
 		});
 	}
@@ -55,9 +59,9 @@ public class ChangePhoneNumberActivity extends BaseActivity{
 	public void onEventRunEnd(Event event) {
 		// TODO Auto-generated method stub
 		super.onEventRunEnd(event);
-		if (event.getEventCode() == EventCode.HTTP_UPDATEMOBILE) {
+		if (event.getEventCode() == EventCode.HTTP_MODIFYPHONENUMBER) {
 			if (event.isSuccess()) {
-				UpdatePhoneResponseBean bean = (UpdatePhoneResponseBean) event.getReturnParamAtIndex(0);
+				BaseResponseBean bean = (BaseResponseBean) event.getReturnParamAtIndex(0);
 				if (bean != null) {
 					CommonUtils.showToast(bean.getMsg());
 				}

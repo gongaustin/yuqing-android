@@ -17,6 +17,34 @@ public class URLUtils {
 	public static final String QUERYUSER = SERVER + "ucenter/app/query/user";
 
 	public static final String QUERYUPGRAGE = SERVER + "ucenter/app/query/upgrage";
+
+	public static final String MODIFYPHONENUMBER = SERVER + "ucenter/app/modify/phoneNumber";
+
+    public static final String MODIFYAVATAR = SERVER + "ucenter/app/modify/avatar";
+
+	public static final String UPLOADFILE = SERVER + "ucenter/upload/file";
+
+    public static final String UPDATECLIENTID = SERVER + "ucenter/user/updateClientId";
+
+	public static final String GROUPCREATE = SERVER + "ucenter/rong/group/create";
+
+	public static final String GETCREATEDGROUPS = SERVER + "ucenter/rong/group/getCreatedGroups";
+
+	public static final String GETGROUPINFO = SERVER + "ucenter/rong/group/getGroupInfo";
+
+	public static final String GROUPJOIN = SERVER + "ucenter/rong/group/join";
+
+	public static final String QUITGROUP = SERVER + "ucenter/rong/group/quitGroup";
+
+	public static final String DISMISSGROUP = SERVER + "ucenter/rong/group/dismissGroup";
+
+	public static final String USERINFOBYUSERID = SERVER + "ucenter/app/query/userInfoByUserId";
+
+
+
+
+
+
 		
 	public static final String QUERYLASTVERSION = SERVER + "api/appm/appManager/queryLastVersion";
 		
@@ -46,11 +74,7 @@ public class URLUtils {
 	
 	public static final String JOINGROUP = SERVER + "rong/group/join";
 	
-	public static final String QUITGROUP = SERVER + "rong/group/quit";
-	
-	public static final String DISMISSGROUP = SERVER + "rong/group/dismiss";
-	
-	public static final String UPDATECLIENTID = SERVER + "api/push/updateClientId";
+
 	
 	public static final String SYNC = SERVER + "rong/group/sync";
 
