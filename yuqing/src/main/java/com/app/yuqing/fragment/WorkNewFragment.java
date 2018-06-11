@@ -15,7 +15,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.DownloadListener;
@@ -31,13 +30,12 @@ import android.widget.Toast;
 
 import com.app.yuqing.AppContext;
 import com.app.yuqing.R;
-import com.app.yuqing.utils.PersistentCookieStore;
+import com.app.yuqing.utils.PreManager;
 import com.app.yuqing.utils.webview.MyWebChomeClient;
 import com.app.yuqing.utils.webview.PermissionUtil;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.io.File;
-import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +73,8 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         initView();
     }
 
+
+
     private void initView() {
         requestPermissionsAndroidM();
         String url = getArguments().getString(KEY_URL);
@@ -86,7 +86,8 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         if (TextUtils.isEmpty(url)) {
             Toast.makeText(getActivity(), "链接为空", Toast.LENGTH_LONG).show();
         } else {
-            syncCookie(getActivity(),url);
+            String token = PreManager.getString(getActivity().getApplicationContext(),AppContext.KEY_TOKEN);
+            webView.loadUrl("javascript:document.cookie='token="+token+"';");
             webView.loadUrl(url);
         }
     }
@@ -103,8 +104,8 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         //设置支持DomStorage
         webSettings.setDomStorageEnabled(true);
         //设置存储模式
-//        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+//        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         //设置适应屏幕
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -122,7 +123,7 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
     private void initWebView(WebView wView) {
         wView.requestFocus();
         //下面三个各种监听
-//        wView.setWebChromeClient(new MyWebChomeClient(this));
+        wView.setWebChromeClient(new MyWebChomeClient(this));
         wView.setWebViewClient(new MyWebViewClient());
         wView.setDownloadListener(new MyWebViewDownLoadListener());
 //		wView.setWebViewClient(new MonitorWebClient(webView,this));
@@ -353,7 +354,6 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
 
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-            syncCookie(getActivity(),url);
             return super.shouldInterceptRequest(view, url);
         }
 
@@ -361,14 +361,14 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
-            syncCookie(getActivity(),url);
             return super.shouldInterceptRequest(view, request);
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             System.out.println("WebView url:"+url);
-            syncCookie(getActivity(),url);
+            String token = PreManager.getString(getActivity().getApplicationContext(),AppContext.KEY_TOKEN);
+            view.loadUrl("javascript:document.cookie='token="+token+"';");
             view.loadUrl(url);
             return true;
         }
@@ -442,36 +442,18 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
 
     //****************************   处理cookie开始   **************************//
     private void syncCookie(Context context, String url){
-        try{
-            Log.d("Nat: webView.syncCookie.url", url);
-
-            CookieSyncManager.createInstance(context);
-
-            CookieManager cookieManager = CookieManager.getInstance();
-            cookieManager.setAcceptCookie(true);
-            cookieManager.removeSessionCookie();// 移除
-            cookieManager.removeAllCookie();
-            String oldCookie = cookieManager.getCookie(url);
-            if(oldCookie != null){
-                Log.d("Nat: webView.syncCookieOutter.oldCookie", oldCookie);
-            }
-
-            StringBuilder sbCookie = new StringBuilder();
-            sbCookie.append(String.format("JSESSIONID=%s","INPUT YOUR JSESSIONID STRING"));
-            sbCookie.append(String.format(";domain=%s", "INPUT YOUR DOMAIN STRING"));
-            sbCookie.append(String.format(";path=%s","INPUT YOUR PATH STRING"));
-
-            String cookieValue = sbCookie.toString();
-            cookieManager.setCookie(url, cookieValue);
+        String token = PreManager.getString(context,AppContext.KEY_TOKEN);
+        CookieManager cookieManager = CookieManager.getInstance();
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.removeSessionCookies(null);
+            cookieManager.flush();
+        } else {
+            cookieManager.removeSessionCookie();
             CookieSyncManager.getInstance().sync();
-
-            String newCookie = cookieManager.getCookie(url);
-            if(newCookie != null){
-                Log.d("Nat: webView.syncCookie.newCookie", newCookie);
-            }
-        }catch(Exception e){
-            Log.e("Nat: webView.syncCookie failed", e.toString());
         }
+        cookieManager.setAcceptCookie(true);
+        //设置Cookie
+        CookieSyncManager.getInstance().sync();
     }
 
 }

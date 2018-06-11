@@ -8,7 +8,6 @@ import android.text.TextUtils;
 
 import com.app.yuqing.AppContext;
 import com.app.yuqing.MyApplication;
-import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.PersistentCookieStore;
 import com.app.yuqing.utils.PreManager;
 
@@ -74,14 +73,13 @@ public class OKHttpUtil {
 //                    @Override
 //                    public List<Cookie> loadForRequest(HttpUrl url)
 //                    {//加载新的cookies
-////                    	if (noCookie) {
-////                    		List<Cookie> cookies = new ArrayList<Cookie>();
-////							return cookies;
-////						} else {
-////	                    	List<Cookie> cookies = cookieStore.get(url);
-////	                        return cookies;
-////						}
-//                        return null;
+//                    	if (noCookie) {
+//                    		List<Cookie> cookies = new ArrayList<Cookie>();
+//							return cookies;
+//						} else {
+//	                    	List<Cookie> cookies = cookieStore.get(url);
+//	                        return cookies;
+//						}
 //                    }
 //                })
                 .build();

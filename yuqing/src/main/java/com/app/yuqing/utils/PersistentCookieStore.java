@@ -1,5 +1,10 @@
 package com.app.yuqing.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.Log;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,11 +16,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import android.util.Log;
 
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
@@ -74,7 +74,9 @@ public class PersistentCookieStore {
 
         //讲cookies持久化到本地
         SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
-        prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));
+        if (cookies.get(url.host()) != null) {
+            prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));
+        }
         prefsWriter.putString(name, encodeCookie(new SerializableOkHttpCookies(cookie)));
         prefsWriter.apply();
     }

@@ -35,5 +35,5 @@ public class AppContext {
 	public static final String KEY_NOLOGIN = "key_nologin";
 	public static final String KEY_TOKEN = "key_token";
 	public static final String APPID = "1";
-	public static final String APP_URL = "http://120.24.241.113:8080/blt-app/#/";
+	public static final String APP_URL = "http://new.sevencai.com/app/#/";
 }
