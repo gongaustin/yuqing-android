@@ -40,8 +40,9 @@ public class URLUtils {
 
 	public static final String USERINFOBYUSERID = SERVER + "ucenter/app/query/userInfoByUserId";
 
+	public static final String GETNEWTOKEN = SERVER + "ucenter/app/get/newToken";
 
-
+	public static final String GETTOKEN = SERVER + "ucenter/rong/user/getToken";
 
 
 
@@ -49,8 +50,6 @@ public class URLUtils {
 	public static final String QUERYLASTVERSION = SERVER + "api/appm/appManager/queryLastVersion";
 		
 	public static final String TREEDATA = SERVER + "api/treeDataMobile";
-	
-	public static final String GETTOKEN = SERVER + "rong/user/getToken";
 		
 	public static final String QUERYUSERBYOFFICEID = SERVER + "api/appm/queryUserByOfficeId";
 		

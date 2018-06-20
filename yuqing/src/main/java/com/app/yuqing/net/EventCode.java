@@ -25,6 +25,8 @@ public class EventCode {
 
 	public static final int HTTP_USERINFOBYUSERID = ++BASECODE;
 
+	public static final int HTTP_GETNEWTOKEN = ++BASECODE;
+
 
 	
 	public static final int HTTP_QUERYLASTVERSION = ++BASECODE;

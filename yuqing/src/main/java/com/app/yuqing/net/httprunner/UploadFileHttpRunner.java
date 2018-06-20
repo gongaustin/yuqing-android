@@ -7,6 +7,7 @@ import com.app.yuqing.net.Event;
 import com.app.yuqing.net.OKHttpUtil;
 import com.app.yuqing.net.URLUtils;
 import com.app.yuqing.net.bean.BaseResponseBean;
+import com.app.yuqing.net.bean.UploadFileResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 
 import java.io.File;
@@ -29,7 +30,7 @@ public class UploadFileHttpRunner extends HttpRunner {
         RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file", "file", fileBody)
+                .addFormDataPart("data", "file.jpg", fileBody)
                 .build();
 
         String result=OKHttpUtil.getInstance().request(URLUtils.UPLOADFILE,requestBody,"post",false);
@@ -42,7 +43,7 @@ public class UploadFileHttpRunner extends HttpRunner {
             return;
         }
 
-        BaseResponseBean bean = gson.fromJson(result,BaseResponseBean.class);
+        UploadFileResponseBean bean = gson.fromJson(result,UploadFileResponseBean.class);
 
         if (!bean.isSuccess()) {
             event.setSuccess(false);

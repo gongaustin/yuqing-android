@@ -13,6 +13,7 @@ import android.util.Log;
 import com.app.yuqing.AppContext;
 import com.app.yuqing.MyApplication;
 import com.app.yuqing.R;
+import com.app.yuqing.activity.MainActivity;
 import com.app.yuqing.activity.UrlWebClientActivity;
 import com.app.yuqing.bean.MessageContentDataBean;
 import com.app.yuqing.bean.MessageDataBean;
@@ -56,7 +57,6 @@ public class YuQingIntentService extends GTIntentService{
 		System.out.println("onNotificationMessageClicked:"+gtNotificationMessage.getContent());
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public void onReceiveMessageData(Context context, GTTransmitMessage msg) {
 		// TODO Auto-generated method stub
@@ -77,6 +77,9 @@ public class YuQingIntentService extends GTIntentService{
 
 		if (payload == null) {
 			Log.e(TAG, "receiver payload = null");
+			Intent dataIntent = new Intent(this,MainActivity.class);
+			dataIntent.putExtra(MainActivity.KEY_INDEX,MainActivity.INDEX_WORK);
+			startActivity(dataIntent);
 		} else {
 			String data = new String(payload);
 			Log.d(TAG, "receiver payload = " + data);
@@ -86,6 +89,10 @@ public class YuQingIntentService extends GTIntentService{
 				if (mdb != null) {
 					sendMessage(mdb);
 				}
+			} else {
+				Intent dataIntent = new Intent(this,MainActivity.class);
+				dataIntent.putExtra(MainActivity.KEY_INDEX,MainActivity.INDEX_WORK);
+				startActivity(dataIntent);
 			}
 		}
 
@@ -104,12 +111,11 @@ public class YuQingIntentService extends GTIntentService{
 		CommonUtils.showToast("onReceiveCommandResult:"+arg1);
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	private void sendMessage(MessageDataBean mdb) {
 		if (mdb == null ) return;
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		Intent dataIntent = new Intent(this,UrlWebClientActivity.class);
-		dataIntent.putExtra(UrlWebClientActivity.KEY_URL,mdb.getUrl());
+		Intent dataIntent = new Intent(this,MainActivity.class);
+		dataIntent.putExtra(MainActivity.KEY_INDEX,MainActivity.INDEX_WORK);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, dataIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		Notification notification = new Notification.Builder(this)
 				.setSmallIcon(R.drawable.logo)//设置小图标

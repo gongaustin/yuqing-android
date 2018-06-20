@@ -7,20 +7,18 @@ import com.app.yuqing.net.Event;
 import com.app.yuqing.net.OKHttpUtil;
 import com.app.yuqing.net.URLUtils;
 import com.app.yuqing.net.bean.BaseResponseBean;
+import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
 
 /**
- * Created by Administrator on 2018/6/11.
+ * Created by Administrator on 2018/6/12.
  */
 
-public class ModifyAvatarHttpRunner extends HttpRunner {
+public class GetNewTokenHttpRunner extends HttpRunner {
 
     @Override
     public void onEventRun(Event event) throws Exception {
-        String newAvatarUrl = (String) event.getParamAtIndex(0);
-
-        String url = URLUtils.MODIFYAVATAR+"?newAvatarUrl="+newAvatarUrl;
-        String result = OKHttpUtil.getInstance().request(url, null, "get",false);
+        String result = OKHttpUtil.getInstance().request(URLUtils.GETNEWTOKEN, null, "get",false);
 
         Log.i(AppContext.LOG_NET, result);
         System.out.println("result : "+result);
@@ -30,16 +28,15 @@ public class ModifyAvatarHttpRunner extends HttpRunner {
             return;
         }
 
-        BaseResponseBean bean = gson.fromJson(result, BaseResponseBean.class);
-
+        UserResponseBean bean = gson.fromJson(result, UserResponseBean.class);
         if (!bean.isSuccess()) {
             event.setSuccess(false);
             event.setFailException(new Exception(bean.getMsg()));
         } else {
             event.setSuccess(true);
             event.addReturnParam(bean);
-            event.addReturnParam(newAvatarUrl);
         }
-
     }
+
+
 }

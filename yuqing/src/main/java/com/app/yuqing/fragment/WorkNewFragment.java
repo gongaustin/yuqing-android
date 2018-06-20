@@ -88,6 +88,7 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         } else {
             String token = PreManager.getString(getActivity().getApplicationContext(),AppContext.KEY_TOKEN);
             webView.loadUrl("javascript:document.cookie='token="+token+"';");
+            syncCookie(getActivity().getApplicationContext(),url);
             webView.loadUrl(url);
         }
     }
@@ -105,7 +106,6 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         webSettings.setDomStorageEnabled(true);
         //设置存储模式
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-//        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         //设置适应屏幕
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -369,17 +369,14 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
             System.out.println("WebView url:"+url);
             String token = PreManager.getString(getActivity().getApplicationContext(),AppContext.KEY_TOKEN);
             view.loadUrl("javascript:document.cookie='token="+token+"';");
+            syncCookie(getActivity().getApplicationContext(),url);
             view.loadUrl(url);
             return true;
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
-//            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-//                CookieSyncManager.getInstance().sync();
-//            } else {
-//                CookieManager.getInstance().flush();
-//            }
+
         }
     }
 
@@ -443,6 +440,7 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
     //****************************   处理cookie开始   **************************//
     private void syncCookie(Context context, String url){
         String token = PreManager.getString(context,AppContext.KEY_TOKEN);
+        CookieSyncManager.createInstance(context);
         CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             cookieManager.removeSessionCookies(null);
@@ -452,6 +450,8 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
             CookieSyncManager.getInstance().sync();
         }
         cookieManager.setAcceptCookie(true);
+        String value = "token="+token;
+        cookieManager.setCookie(url,value);
         //设置Cookie
         CookieSyncManager.getInstance().sync();
     }

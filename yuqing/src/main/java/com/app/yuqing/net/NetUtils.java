@@ -4,6 +4,7 @@ import com.app.yuqing.net.httprunner.CreateGroupHttpRunner;
 import com.app.yuqing.net.httprunner.DismissGroupHttpRunner;
 import com.app.yuqing.net.httprunner.GetCreatedGroupsHttpRunner;
 import com.app.yuqing.net.httprunner.GetGroupInfoHttpRunner;
+import com.app.yuqing.net.httprunner.GetNewTokenHttpRunner;
 import com.app.yuqing.net.httprunner.GetTokenHttpRunner;
 import com.app.yuqing.net.httprunner.GetuiTestHttpRunner;
 import com.app.yuqing.net.httprunner.GroupCreateHttpRunner;
@@ -66,6 +67,7 @@ public class NetUtils {
 		eventManager.registerEventRunner(EventCode.HTTP_GETGROUPINFO, new GetGroupInfoHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_GROUPJOIN, new JoinGroupHttpRunner());
 		eventManager.registerEventRunner(EventCode.HTTP_USERINFOBYUSERID, new UserInfoByUserIdHttpRunner());
+		eventManager.registerEventRunner(EventCode.HTTP_GETNEWTOKEN, new GetNewTokenHttpRunner());
 	}
 }
 

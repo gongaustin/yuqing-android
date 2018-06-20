@@ -52,10 +52,15 @@ public class ContactFragment extends BaseFragment {
 		// TODO Auto-generated method stub
 		initView();
 		initListener();
-		getData();
 		super.onActivityCreated(savedInstanceState);
 	}
-	
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		getData();
+	}
+
 	private void initView() {
 		tvTitle = (TextView) contentView.findViewById(R.id.tv_title);
 		lvContact = (ListView) contentView.findViewById(R.id.lv_data);

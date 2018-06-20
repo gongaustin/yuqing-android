@@ -9,6 +9,7 @@ import io.rong.imlib.model.UserInfo;
 import com.app.yuqing.AppContext;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.BaseResponseBean;
 import com.app.yuqing.net.bean.PersonalInfoResponseBean;
 import com.app.yuqing.net.bean.TokenBean;
 import com.app.yuqing.net.bean.UserResponseBean;
@@ -72,12 +73,26 @@ public class StartActivity extends BaseActivity {
 				UserResponseBean bean = (UserResponseBean) event.getReturnParamAtIndex(0);
 				if (bean != null) {
 					PreManager.putString(getApplication(),AppContext.KEY_TOKEN,bean.getData());
-					pushEvent(EventCode.HTTP_PERSONALINFO);
+					pushEvent(EventCode.HTTP_GETTOKEN);
 				}
 			} else {
 				Intent intent = new Intent(StartActivity.this,LoginActivity.class);
 				startActivity(intent);
 				finish();
+			}
+		}
+
+		if (event.getEventCode() == EventCode.HTTP_GETTOKEN) {
+			if (event.isSuccess()) {
+				UserResponseBean bean = (UserResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null) {
+					pushEvent(EventCode.HTTP_PERSONALINFO);
+					if (!TextUtils.isEmpty(bean.getData())) {
+						connect(bean.getData());
+					}
+				}
+			} else {
+				CommonUtils.showToast(event.getFailMessage());
 			}
 		}
 
@@ -100,9 +115,6 @@ public class StartActivity extends BaseActivity {
 							return mGroup;
 						}
 					}, false);
-					if (!TextUtils.isEmpty(bean.getData().getRongToken())) {
-						connect(bean.getData().getRongToken());
-					}
 				}
 			} else {
 				CommonUtils.showToast(event.getFailMessage());
@@ -143,6 +155,7 @@ public class StartActivity extends BaseActivity {
 	            @Override
 	            public void onSuccess(String userid) {
 	                Log.d("LoginActivity", "--onSuccess" + userid);
+					CommonUtils.showToast("登录成功");
 	                startActivity(new Intent(StartActivity.this, MainActivity.class));
 	                finish();
 	            }

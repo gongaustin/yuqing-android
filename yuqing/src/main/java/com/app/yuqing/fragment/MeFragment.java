@@ -1,14 +1,17 @@
 package com.app.yuqing.fragment;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -29,7 +32,9 @@ import com.app.yuqing.bean.PersonalBean;
 import com.app.yuqing.bean.UserOldBean;
 import com.app.yuqing.net.Event;
 import com.app.yuqing.net.EventCode;
+import com.app.yuqing.net.bean.BaseResponseBean;
 import com.app.yuqing.net.bean.PersonalInfoResponseBean;
+import com.app.yuqing.net.bean.UploadFileResponseBean;
 import com.app.yuqing.net.bean.UserDetailResponseBean;
 import com.app.yuqing.net.bean.UserResponseBean;
 import com.app.yuqing.utils.CommonUtils;
@@ -43,9 +48,11 @@ import com.app.yuqing.view.ChangeHeadDialog.ChangeHeadDialogListener;
 import com.app.yuqing.view.ExitDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Group;
 import io.rong.imlib.model.UserInfo;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class MeFragment extends BaseFragment {
 
@@ -71,13 +78,9 @@ public class MeFragment extends BaseFragment {
 	public TextView tvVersion;
 	@ViewInject(R.id.rl_exit)
 	private RelativeLayout rlExit;
-	
-	private ChangeHeadDialog dialog;
+
 	private ExitDialog exitDialog;
-	
-	private static final int CODE_IMAGE_CAPTURE = 0x11;
-	private static final int SELECT_PIC = 0x13;
-	private static final int CROP_IMAGE = 0x14;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -99,7 +102,7 @@ public class MeFragment extends BaseFragment {
 	}
 
 	private void getData() {
-		pushEvent(EventCode.HTTP_PERSONALINFO);
+		pushEventNoProgress(EventCode.HTTP_PERSONALINFO);
 
 	}
 
@@ -128,22 +131,7 @@ public class MeFragment extends BaseFragment {
 			
 			@Override
 			public void onClick(View v) {
-				if (dialog == null) {
-					dialog = new ChangeHeadDialog(getActivity());
-				}
-				dialog.setListener(new ChangeHeadDialogListener() {
-					
-					@Override
-					public void pic() {
-						selectPicFromLocal();
-					}
-					
-					@Override
-					public void capture() {
-						selectPicFromCamera();
-					}
-				});
-				dialog.show();
+				choicePhotoWrapper("test");
 			}
 		});
 		
@@ -210,49 +198,6 @@ public class MeFragment extends BaseFragment {
 			}
 		});
 	}
-	
-	private File headFile;
-    /**
-     * 照相获取图片
-     */
-    protected void selectPicFromCamera() {
-		Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		Uri uri = CommonUtils.getTempUri(PictureUtils.instance().getUriPath(), (MainActivity)getActivity());
-		if (uri != null) {
-			intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-			startActivityForResult(intent, CODE_IMAGE_CAPTURE);
-		} else {
-			showToast("调取相机失败");
-		}
-    }
-
-    /**
-     * 从图库获取图片
-     */
-    protected void selectPicFromLocal() {
-		Intent intent2 =new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-		startActivityForResult(intent2, SELECT_PIC); 
-    }    
-	
-	/**
-	 * 获取裁剪之后的图片数据
-	 * 
-	 * @param data
-	 */
-	private InputStream getImageToView(Intent data) {
-		Bundle extras = data.getExtras();
-		if (extras != null) {
-			try {
-				Bitmap photo = extras.getParcelable("data");
-				ivHead.setImageBitmap(photo);
-				ivBG.setImageBitmap(photo);
-				return ImageUtil.bitmap2InputStream(photo, 90);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return null;
-	}	
     
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -260,96 +205,30 @@ public class MeFragment extends BaseFragment {
 			return;
 		}
 		switch(requestCode) {
-		case SELECT_PIC:
-			if(data == null) {
-				showToast("获取图片失败");
-				return;
-			}
-			Uri selectedImage = data.getData();
-			String[] filePathColumns = { MediaStore.Images.Media.DATA };
-	        Cursor c = getActivity().getContentResolver().query(selectedImage, filePathColumns, null, null, null);
-	        c.moveToFirst();
-	        int columnIndex = c.getColumnIndex(filePathColumns[0]);
-	        String picturePath = c.getString(columnIndex);
-	        startPhotoZoom(Uri.parse(PictureUtils.instance().getUriPath(picturePath)));
-			break;
-		
-		case CROP_IMAGE:
-			if (data != null) {
-				InputStream tmpPhoto = getImageToView(data);
-				if (tmpPhoto != null) {
-					File file = ImageUtil.inputStreamToFile(tmpPhoto);
-					headFile = file;
-					pushEventBlock(EventCode.HTTP_UPLOADFILE, headFile);
+			case REQUEST_CODE_CHOOSE_PHOTO :
+				if (BGAPhotoPickerActivity.getSelectedImages(data) != null
+						&& BGAPhotoPickerActivity.getSelectedImages(data).size() > 0) {
+					if (!TextUtils.isEmpty(BGAPhotoPickerActivity.getSelectedImages(data).get(0))) {
+						File file = new File(BGAPhotoPickerActivity.getSelectedImages(data).get(0));
+						if (!file.exists()) {
+							file.getParentFile().mkdirs();
+							try {
+								file.createNewFile();
+								pushEventBlock(EventCode.HTTP_UPLOADFILE, file);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						} else {
+							pushEventBlock(EventCode.HTTP_UPLOADFILE, file);
+						}
+					}
 				}
-			}
-			break;
-			
-		case CODE_IMAGE_CAPTURE:
-			if(data == null) {
-				try {
-				     String caputrePicturePath = PictureUtils.instance().getUriPath();
-				     System.out.println("path:"+caputrePicturePath);
-				     String resultpath = PictureUtils.instance().compressFileToFile(caputrePicturePath);
-				     startPhotoZoom(Uri.parse(PictureUtils.instance().getUriPath(resultpath)));
-				} catch (Exception e) {
-					// TODO: handle exception
-					showToast("获取头像失败");
-					e.printStackTrace();
-				}
-				 
-			} else {
-				Uri uri = data.getData();
-				if(uri == null){  
-			    	 System.out.println("拍照测试，返回isnull");
-			    	 Bundle bundle = data.getExtras();    
-			    	 if (bundle != null) {                 
-			    		 Bitmap  photo = (Bitmap) bundle.get("data");  
-			    		 String path = PictureUtils.instance().compressBitmapToFile(photo);
-			    		 startPhotoZoom(Uri.parse(PictureUtils.instance().getUriPath(path)));
-			    	 }   
-			       }else{
-			    	   System.out.println(uri.toString());
-				       String[] cameraKeys = { MediaStore.Images.Media.DATA };
-				       Cursor cur = getActivity().getContentResolver().query(uri, cameraKeys, null, null, null);
-				       cur.moveToFirst();
-				       int index = cur.getColumnIndex(cameraKeys[0]);
-				       String filePath = cur.getString(index);
-				       System.out.println("path:"+filePath);
-				       String path = PictureUtils.instance().compressFileToFile(filePath);
-				       System.out.println("最终路径："+path);
-				       cur.close();
-				       startPhotoZoom(Uri.parse(PictureUtils.instance().getUriPath(path)));
-			       }   
-			}
-			break;
+				break;
 			
 		default:
 			super.onActivityResult(requestCode,resultCode,data);
 		}    	
     }
-    
-	/**
-	 * 裁剪图片方法实现
-	 * 
-	 * @param uri
-	 */
-	public void startPhotoZoom(Uri uri) {
-		Intent intent = new Intent("com.android.camera.action.CROP");
-		intent.setDataAndType(uri, "image/*");
-		// 设置裁剪
-		intent.putExtra("crop", "true");
-		// aspectX aspectY 是宽高的比例
-		intent.putExtra("aspectX", 1);
-		intent.putExtra("aspectY", 1);
-		// outputX outputY 是裁剪图片宽高
-		intent.putExtra("outputX", 320);
-		intent.putExtra("outputY", 320);
-		intent.putExtra("return-data", true);
-		intent.putExtra("scale", true);// 去黑边
-		intent.putExtra("scaleUpIfNeeded", true);// 去黑边
-		startActivityForResult(intent, CROP_IMAGE);
-	}
 
 	@Override
 	public void onEventRunEnd(Event event) {
@@ -368,7 +247,46 @@ public class MeFragment extends BaseFragment {
 		}
 
 		if (event.getEventCode() == EventCode.HTTP_UPLOADFILE) {
+			if (event.isSuccess()) {
+				UploadFileResponseBean bean = (UploadFileResponseBean) event.getReturnParamAtIndex(0);
+				if (bean != null
+						&& bean.getData() != null
+						&& !TextUtils.isEmpty(bean.getData().getUrl())) {
+					pushEventBlock(EventCode.HTTP_MODIFYAVATAR,bean.getData().getUrl());
+				}
+			} else {
+				CommonUtils.showToast(event.getFailMessage());
+			}
+		}
 
+		if (event.getEventCode() == EventCode.HTTP_MODIFYAVATAR) {
+			if (event.isSuccess()) {
+				String url = (String) event.getReturnParamAtIndex(1);
+				if (!TextUtils.isEmpty(url)) {
+					ImageLoaderUtil.display(url,ivHead);
+					ImageLoaderUtil.display(url,ivBG);
+				}
+			} else {
+				CommonUtils.showToast(event.getFailMessage());
+			}
+		}
+	}
+
+	//处理拍照问题
+
+	private static final int REQUEST_CODE_PERMISSION_PHOTO_PICKER = 1;
+
+	private static final int REQUEST_CODE_CHOOSE_PHOTO = 2;
+
+	private void choicePhotoWrapper(String tag){
+		String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+		if (EasyPermissions.hasPermissions(getActivity(), perms)) {
+			// 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话就没有拍照功能
+			File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "BGAPhotoPickerTakePhoto");
+			startActivityForResult(BGAPhotoPickerActivity.newIntent(getActivity(), takePhotoDir, 1, null, false), REQUEST_CODE_CHOOSE_PHOTO);
+
+		} else {
+			EasyPermissions.requestPermissions(this, "图片选择需要以下权限:\n\n1.访问设备上的照片\n\n2.拍照", REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
 		}
 	}
 }

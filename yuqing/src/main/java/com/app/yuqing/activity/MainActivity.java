@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,7 +65,8 @@ public class MainActivity extends BaseActivity {
 	private ArrayList<BaseFragment> fragments = new ArrayList<BaseFragment>();
 	
 	private VersionUpdateDialog versionUpdateDialog;
-	private PersonalBean loginBean;
+	public static final String KEY_INDEX = "key_mainActivity_index";
+	public static final String INDEX_WORK = "value_mainActivity_work";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -73,7 +75,16 @@ public class MainActivity extends BaseActivity {
 		initView();
 		getData();
 	}
-	
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		String index = intent.getStringExtra(KEY_INDEX);
+		if (!TextUtils.isEmpty(index) && index.equals(INDEX_WORK)) {
+			rbWork.performClick();
+		}
+	}
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -197,10 +208,6 @@ public class MainActivity extends BaseActivity {
     
     public void getData() {
     	pushEventNoProgress(EventCode.HTTP_QUERYUPGRAGE,AppContext.APPID,CommonUtils.getVersion());
-    	loginBean = PreManager.get(getApplicationContext(), AppContext.KEY_LOGINUSER, PersonalBean.class);
-//		if (loginBean != null && loginBean.getUser() != null && !TextUtils.isEmpty(loginBean.getUser().getId())) {
-//			pushEvent(EventCode.HTTP_QUERYGROUP, loginBean.getUser().getId());
-//		}
     }
     
     @Override
