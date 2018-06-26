@@ -39,6 +39,7 @@ public class QueryUpgrageHttpRunner extends HttpRunner {
             } else {
                 event.setFailException(new Exception("未知错误"));
             }
+            event.setmErrorCode(bean.getCode());
         } else {
             event.setSuccess(true);
             event.addReturnParam(bean);

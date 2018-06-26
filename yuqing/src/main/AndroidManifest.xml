@@ -414,7 +414,14 @@
         <!-- 定位需要的服务 -->
 
         <!-- <service android:name="com.amap.api.location.APSService" /> -->
-		
+
+        <!-- 自动安装广播 -->
+        <receiver android:name=".service.UpdataBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+                <!--<action android:name="android.intent.action.PACKAGE_INSTALL" />-->
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

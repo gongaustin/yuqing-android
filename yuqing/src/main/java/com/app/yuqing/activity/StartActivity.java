@@ -73,7 +73,7 @@ public class StartActivity extends BaseActivity {
 				UserResponseBean bean = (UserResponseBean) event.getReturnParamAtIndex(0);
 				if (bean != null) {
 					PreManager.putString(getApplication(),AppContext.KEY_TOKEN,bean.getData());
-					pushEvent(EventCode.HTTP_GETTOKEN);
+					pushEventNoProgress(EventCode.HTTP_GETTOKEN);
 				}
 			} else {
 				Intent intent = new Intent(StartActivity.this,LoginActivity.class);
@@ -86,13 +86,15 @@ public class StartActivity extends BaseActivity {
 			if (event.isSuccess()) {
 				UserResponseBean bean = (UserResponseBean) event.getReturnParamAtIndex(0);
 				if (bean != null) {
-					pushEvent(EventCode.HTTP_PERSONALINFO);
+					pushEventNoProgress(EventCode.HTTP_PERSONALINFO);
 					if (!TextUtils.isEmpty(bean.getData())) {
 						connect(bean.getData());
 					}
 				}
 			} else {
-				CommonUtils.showToast(event.getFailMessage());
+				Intent intent = new Intent(StartActivity.this,LoginActivity.class);
+				startActivity(intent);
+				finish();
 			}
 		}
 
@@ -135,6 +137,7 @@ public class StartActivity extends BaseActivity {
 
 	    if (getApplicationInfo().packageName.equals(CommonUtils.getCurProcessName(getApplicationContext()))) {
 
+			showXProgressDialog();
 	        RongIM.connect(token, new RongIMClient.ConnectCallback() {
 
 	            /**
@@ -143,6 +146,7 @@ public class StartActivity extends BaseActivity {
 	             */
 	            @Override
 	            public void onTokenIncorrect() {
+					dismissXProgressDialog();
 					Intent intent = new Intent(StartActivity.this,LoginActivity.class);
 					startActivity(intent);
 					finish();
@@ -155,6 +159,7 @@ public class StartActivity extends BaseActivity {
 	            @Override
 	            public void onSuccess(String userid) {
 	                Log.d("LoginActivity", "--onSuccess" + userid);
+					dismissXProgressDialog();
 					CommonUtils.showToast("登录成功");
 	                startActivity(new Intent(StartActivity.this, MainActivity.class));
 	                finish();
@@ -166,6 +171,7 @@ public class StartActivity extends BaseActivity {
 	             */
 	            @Override
 	            public void onError(RongIMClient.ErrorCode errorCode) {
+					dismissXProgressDialog();
 					Intent intent = new Intent(StartActivity.this,LoginActivity.class);
 					startActivity(intent);
 					finish();

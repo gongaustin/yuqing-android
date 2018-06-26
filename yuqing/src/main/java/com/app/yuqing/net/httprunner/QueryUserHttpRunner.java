@@ -30,6 +30,7 @@ public class QueryUserHttpRunner extends HttpRunner {
         QueryUserResponseBean bean = gson.fromJson(result, QueryUserResponseBean.class);
         if (!bean.isSuccess()) {
             event.setSuccess(false);
+            event.setmErrorCode(bean.getCode());
         } else {
             event.setSuccess(true);
             event.addReturnParam(bean);

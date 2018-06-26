@@ -317,15 +317,6 @@ import android.widget.TextView;
 	
 	@Override
 	public void onEventRunEnd(Event event) {
-		if(!event.isSuccess()){
-			if (!TextUtils.isEmpty(event.getmErrorCode())) {
-				CommonUtils.showToast(event.getFailException().getMessage());
-			}
-//			final Exception e = event.getFailException();
-//			if(e != null){
-//				CommonUtils.showToast(e.getMessage());
-//			}
-		}
 		if(mMapEventToProgressBlock != null){
 			Boolean block = mMapEventToProgressBlock.remove(event);
 			if(block != null){
@@ -339,6 +330,16 @@ import android.widget.TextView;
 		if (!event.isSuccess()) {
 			BaseResponseBean bean = (BaseResponseBean) event.getReturnParamAtIndex(0);
 			if (bean != null && AppContext.KEY_NOLOGIN.equals(bean.getMsg())) {
+				CommonUtils.showToast("被其它设备登录");
+				Intent intent = new Intent(this,LoginActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		}
+		if(!event.isSuccess()){
+			if (!TextUtils.isEmpty(event.getmErrorCode())
+					&& AppContext.CODE_NOLOGIN.equals(event.getmErrorCode())) {
+				CommonUtils.showToast("被其它设备登录");
 				Intent intent = new Intent(this,LoginActivity.class);
 				startActivity(intent);
 				finish();

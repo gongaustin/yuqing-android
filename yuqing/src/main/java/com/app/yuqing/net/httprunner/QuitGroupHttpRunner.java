@@ -36,6 +36,7 @@ public class QuitGroupHttpRunner extends HttpRunner {
 		if (!bean.isSuccess()) {
 			event.setSuccess(false);
 			event.setFailException(new Exception(bean.getMsg()));
+			event.setmErrorCode(bean.getCode());
 		} else {
 			event.setSuccess(true);
 			event.addReturnParam(bean);

@@ -31,6 +31,7 @@ public class PersonalInfoHttpRunner extends HttpRunner {
         PersonalInfoResponseBean bean = gson.fromJson(result, PersonalInfoResponseBean.class);
         if (!bean.isSuccess()) {
             event.setSuccess(false);
+            event.setmErrorCode(bean.getCode());
         } else {
             event.setSuccess(true);
             event.addReturnParam(bean);
