@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.yuqing.AppContext;
+import com.app.yuqing.MyApplication;
 import com.app.yuqing.R;
 import com.app.yuqing.activity.AboutActivity;
 import com.app.yuqing.activity.ChangePhoneNumberActivity;
@@ -190,7 +191,7 @@ public class MeFragment extends BaseFragment {
 						if ("true".equals(result)) {
 							Intent intent = new Intent(getActivity(),LoginActivity.class);
 							startActivity(intent);
-							getActivity().finish();
+							MyApplication.instance.exit();
 						}
 					}
 				});

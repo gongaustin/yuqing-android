@@ -18,6 +18,7 @@ import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.DownloadListener;
+import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -29,7 +30,10 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.app.yuqing.AppContext;
+import com.app.yuqing.MyApplication;
 import com.app.yuqing.R;
+import com.app.yuqing.activity.LoginActivity;
+import com.app.yuqing.activity.UrlWebClientActivity;
 import com.app.yuqing.utils.PreManager;
 import com.app.yuqing.utils.webview.MyWebChomeClient;
 import com.app.yuqing.utils.webview.PermissionUtil;
@@ -127,6 +131,7 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         wView.setWebViewClient(new MyWebViewClient());
         wView.setDownloadListener(new MyWebViewDownLoadListener());
 //		wView.setWebViewClient(new MonitorWebClient(webView,this));
+        webView.addJavascriptInterface(new JSObject(),"native");
     }
 
     public String dealUrl(String url) {
@@ -454,6 +459,16 @@ public class WorkNewFragment extends BaseFragment implements MyWebChomeClient.Op
         cookieManager.setCookie(url,value);
         //设置Cookie
         CookieSyncManager.getInstance().sync();
+    }
+
+    public class JSObject {
+
+        @JavascriptInterface
+        public void loginOut() {
+            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            startActivity(intent);
+            MyApplication.instance.exit();
+        }
     }
 
 }

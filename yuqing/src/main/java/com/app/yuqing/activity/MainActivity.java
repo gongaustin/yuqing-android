@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import com.app.yuqing.AppContext;
+import com.app.yuqing.MyApplication;
 import com.app.yuqing.R;
 import com.app.yuqing.bean.GroupBean;
 import com.app.yuqing.bean.PersonalBean;
@@ -86,7 +87,7 @@ public class MainActivity extends BaseActivity {
 					CommonUtils.showToast("被其它设备登录");
 					Intent intent = new Intent(MainActivity.this,LoginActivity.class);
 					startActivity(intent);
-					finish();
+					MyApplication.instance.exit();
 				}
 			}
 		});

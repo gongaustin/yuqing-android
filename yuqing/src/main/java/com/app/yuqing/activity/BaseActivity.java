@@ -333,7 +333,7 @@ import android.widget.TextView;
 				CommonUtils.showToast("被其它设备登录");
 				Intent intent = new Intent(this,LoginActivity.class);
 				startActivity(intent);
-				finish();
+				MyApplication.instance.exit();
 			}
 		}
 		if(!event.isSuccess()){
@@ -342,7 +342,7 @@ import android.widget.TextView;
 				CommonUtils.showToast("被其它设备登录");
 				Intent intent = new Intent(this,LoginActivity.class);
 				startActivity(intent);
-				finish();
+				MyApplication.instance.exit();
 			}
 		}
 	}

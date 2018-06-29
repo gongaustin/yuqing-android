@@ -7,6 +7,7 @@ import com.app.yuqing.utils.MonitorWebClient;
 import com.app.yuqing.utils.PreManager;
 import com.app.yuqing.utils.webview.MyWebChomeClient;
 import com.app.yuqing.utils.webview.PermissionUtil;
+import com.google.gson.JsonObject;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.app.yuqing.MyApplication;
 import com.app.yuqing.R;
@@ -126,6 +127,7 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		wView.setWebViewClient(new MyWebViewClient());
 		wView.setDownloadListener(new MyWebViewDownLoadListener());
 //		wView.setWebViewClient(new MonitorWebClient(webView,this));
+		webView.addJavascriptInterface(new JSObject(),"native");
 	}
 
 	public String dealUrl(String url) {
@@ -453,6 +455,16 @@ public class UrlWebClientActivity extends BaseActivity implements MyWebChomeClie
 		cookieManager.setAcceptCookie(true);
 		//设置Cookie
 		CookieSyncManager.getInstance().sync();
+	}
+
+	public class JSObject {
+
+		@JavascriptInterface
+		public void loginOut() {
+			Intent intent = new Intent(UrlWebClientActivity.this,LoginActivity.class);
+			startActivity(intent);
+			MyApplication.instance.exit();
+		}
 	}
 
 }
