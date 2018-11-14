@@ -191,6 +191,7 @@ public class MeFragment extends BaseFragment {
 						if ("true".equals(result)) {
 							Intent intent = new Intent(getActivity(),LoginActivity.class);
 							startActivity(intent);
+							PreManager.putString(getActivity().getApplicationContext(),AppContext.USER_KEY,"");
 							MyApplication.instance.exit();
 						}
 					}
