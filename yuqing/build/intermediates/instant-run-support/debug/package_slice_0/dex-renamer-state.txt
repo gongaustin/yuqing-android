@@ -1,4 +1,4 @@
-#Wed Nov 29 15:34:59 CST 2017
-base.0=D\:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0
+#Tue Jan 08 10:01:36 CST 2019
+base.0=D\:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0
 renamed.0=classes.dex
-file.0=D\:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0\\classes.dex
+file.0=D\:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0\\classes.dex

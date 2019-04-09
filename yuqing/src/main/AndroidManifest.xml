@@ -5,10 +5,8 @@
     android:versionCode="2"
     android:versionName="2.0" >
 
-    <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="22" />
-    
+    <uses-sdk android:targetSdkVersion="22" />
+
    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -16,11 +14,11 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
  	<!--在sdcard中创建/删除文件的权限 -->
 	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
-    <!--连接网络权限，用于执行云端语音能力 -->  
-    <uses-permission android:name="android.permission.INTERNET"/> 
-    
+    <!--连接网络权限，用于执行云端语音能力 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>    
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 	<!-- IMLIB -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -34,7 +32,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -56,11 +54,12 @@
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>   
-    
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
     <!-- 个推 -->
 
     <!-- 个推SDK权限配置开始 -->
+    <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -96,7 +95,8 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".activity.StartActivity"
             android:label="@string/app_name" >
@@ -106,108 +106,111 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
         </activity>
-                
+
         <activity
          	android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
-            
+
 		    <intent-filter>
 		        <action android:name="android.intent.action.VIEW" />
-		
+
 		        <category android:name="android.intent.category.DEFAULT" />
-		
+
 		        <data
 		            android:host="com.app.yuqing"
 		            android:pathPrefix="/conversationlist"
 		            android:scheme="rong" />
-		    </intent-filter>            
+		    </intent-filter>
         </activity>
-        
+
         <activity
          	android:name=".activity.AboutActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" >
-        </activity>        
-        
+        </activity>
+
         <activity
          	android:name=".activity.ChangePwdActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" >
-        </activity> 
-        
+        </activity>
+
         <activity
          	android:name=".activity.ChangePhoneNumberActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" >
-        </activity>        
-        
+        </activity>
+
         <activity
          	android:name=".activity.UrlWebClientActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" >
-        </activity>     
-        
+        </activity>
+
         <activity
          	android:name=".activity.UserDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" >
-        </activity>  
-        
+        </activity>
+
         <activity
          	android:name=".activity.CreateGroupActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
-        </activity>        
-        
+        </activity>
+
         <activity
          	android:name=".activity.GropListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" >
-        </activity>    
-        
+        </activity>
+
         <activity
          	android:name=".activity.GroupDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" >
-        </activity>               
-        
+        </activity>
+
         <activity
          	android:name=".activity.ChatActivity"
             android:screenOrientation="portrait"
      		android:windowSoftInputMode="stateHidden|adjustResize">
-		    
+
 		     <intent-filter>
 		         <action android:name="android.intent.action.VIEW" />
-		
+
 		         <category android:name="android.intent.category.DEFAULT" />
-		
+
 		         <data
 		             android:host="com.app.yuqing"
 		             android:pathPrefix="/conversation/"
 		             android:scheme="rong" />
-		     </intent-filter>           
-        </activity>          
-        
+		     </intent-filter>
+        </activity>
+
         <!-- imlib config begin -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"
             android:value="qd46yzrfqhuof" />
+        <meta-data
+            android:name="RONG_CLOUD_APP_SECRET"
+            android:value="rb8gNcbxxkT" />
 
         <service
             android:name="io.rong.imlib.ipc.RongService"
@@ -268,11 +271,25 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
-        
+
+        <!-- 第三方相关 :接收Push消息（注册、Push消息、Push连接状态）广播 -->
+        <receiver android:name="io.rong.push.platform.HMSReceiver" >
+            <intent-filter>
+                <!-- 必须,用于接收token -->
+                <action android:name="com.huawei.android.push.intent.REGISTRATION" />
+                <!-- 必须，用于接收消息 -->
+                <action android:name="com.huawei.android.push.intent.RECEIVE" />
+                <!-- 可选，用于点击通知栏或通知栏上的按钮后触发onEvent回调 -->
+                <action android:name="com.huawei.android.push.intent.CLICK" />
+                <!-- 可选，查看push通道是否连接，不查看则不需要 -->
+                <action android:name="com.huawei.intent.action.PUSH_STATE" />
+            </intent-filter>
+        </receiver>
+
         <!--必选： SDK 核心功能-->
 
         <!-- end -->
-        
+
         <!-- rongimkit start -->
         <activity android:name="io.rong.imkit.plugin.location.AMapLocationActivity" />
 
@@ -329,8 +346,8 @@
             android:name="io.rong.imkit.activity.CSLeaveMessageActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"/>
-		<!-- rongimkit end -->                
-    		
+		<!-- rongimkit end -->
+
 		<provider
 		    android:name="android.support.v4.content.FileProvider"
 		    android:authorities="com.app.yuqing.FileProvider"
@@ -422,6 +439,7 @@
                 <!--<action android:name="android.intent.action.PACKAGE_INSTALL" />-->
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

@@ -1,14 +1,98 @@
 [
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\color_tab.xml",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\color\\color_tab.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_background_cache_hint_selector_material_light.xml"
     },
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\color_radiobutton.xml",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\color\\color_radiobutton.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_primary_text_disable_only_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
     },
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\rc_btn_file_list_send.xml",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\color\\rc_btn_file_list_send.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_hint_foreground_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_default.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_tint_default.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\color_radiobutton.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\color\\color_radiobutton.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\switch_thumb_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_spinner.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_tint_spinner.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_primary_text_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_btn_checkable.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_primary_text_disable_only_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_seek_thumb.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_search_url_text.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_search_url_text.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\rc_btn_file_list_send.xml",
+        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\color\\rc_btn_file_list_send.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_btn_colored_borderless_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_edittext.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_hint_foreground_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\switch_thumb_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_btn_colored_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_primary_text_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_switch_track.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\color_tab.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\color\\color_tab.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_secondary_text_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\color\\abc_secondary_text_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\color\\abc_secondary_text_material_dark.xml"
     }
 ]

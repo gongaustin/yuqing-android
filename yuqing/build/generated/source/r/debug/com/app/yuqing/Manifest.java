@@ -9,8 +9,6 @@ package com.app.yuqing;
 
 public final class Manifest {
     public static final class permission {
-        /**  替换为第三方应用的包名 
-         */
         public static final String yuqing="getui.permission.GetuiService.com.app.yuqing";
     }
 }

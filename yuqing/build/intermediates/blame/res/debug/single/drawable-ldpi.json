@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi\\push.png",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\drawable-ldpi\\push.png"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi\\push_small.png",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\drawable-ldpi\\push_small.png"
     },
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi\\push_small.png",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\drawable-ldpi\\push_small.png"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi\\push.png",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\drawable-ldpi\\push.png"
     }
 ]

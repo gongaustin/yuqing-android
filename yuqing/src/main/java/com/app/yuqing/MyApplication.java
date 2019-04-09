@@ -1,5 +1,6 @@
 package com.app.yuqing;
 
+import android.content.Context;
 import io.rong.imkit.DefaultExtensionModule;
 import io.rong.imkit.IExtensionModule;
 import io.rong.imkit.RongExtensionManager;
@@ -21,7 +22,6 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import android.app.Activity;
 import android.app.Application;
 import android.graphics.Bitmap;
-
 public class MyApplication extends Application{
 	public static MyApplication instance;
 	@Override
@@ -112,4 +112,6 @@ public class MyApplication extends Application{
 			}
 		}
 	}
+
+
 }

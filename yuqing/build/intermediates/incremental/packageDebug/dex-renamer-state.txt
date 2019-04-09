@@ -1,7 +1,4 @@
-#Wed Nov 29 15:01:51 CST 2017
-base.0=D\:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_171cf1b6a005324d6fbb2dcd5088781ca0ba8096
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=D\:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_08fa5cafff11b28268eaca4bc22cea9adcdf57ef\\classes.dex
-base.1=D\:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_08fa5cafff11b28268eaca4bc22cea9adcdf57ef
-file.0=D\:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_171cf1b6a005324d6fbb2dcd5088781ca0ba8096\\classes.dex
+#Thu Feb 21 16:18:35 CST 2019
+base.0=D\:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=D\:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

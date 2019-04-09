@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.yuqing"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="2.0" >
 
     <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="22" />
+        android:minSdkVersion="16"
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 往sdcard中写入数据的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -54,7 +55,10 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <!-- 个推 -->
+
+
     <!-- 个推SDK权限配置开始 -->
+    <uses-permission android:name="android.permission.BIND_JOB_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -65,23 +69,30 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 支持iBeancon 需要蓝牙权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- 支持个推3.0 电子围栏功能 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 浮动通知权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- 自定义权限 -->
     <uses-permission android:name="getui.permission.GetuiService.com.app.yuqing" />
-    <!-- 替换为第三方应用的包名 -->
+
     <permission
         android:name="getui.permission.GetuiService.com.app.yuqing"
         android:protectionLevel="normal" >
     </permission>
 
-    <!-- 替换为第三方应用的包名 -->
     <!-- 个推SDK权限配置结束 -->
     <application
         android:name="com.app.yuqing.MyApplication"
         android:allowBackup="true"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.app.yuqing.activity.StartActivity"
@@ -180,7 +191,10 @@
         <!-- imlib config begin -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"
-            android:value="25wehl3u29jaw" />
+            android:value="qd46yzrfqhuof" />
+        <meta-data
+            android:name="RONG_CLOUD_APP_SECRET"
+            android:value="rb8gNcbxxkT" />
 
         <service
             android:name="io.rong.imlib.ipc.RongService"
@@ -242,6 +256,21 @@
             </intent-filter>
         </receiver>
 
+        <!-- 第三方相关 :接收Push消息（注册、Push消息、Push连接状态）广播 -->
+        <receiver android:name="io.rong.push.platform.HMSReceiver" >
+            <intent-filter>
+
+                <!-- 必须,用于接收token -->
+                <action android:name="com.huawei.android.push.intent.REGISTRATION" />
+                <!-- 必须，用于接收消息 -->
+                <action android:name="com.huawei.android.push.intent.RECEIVE" />
+                <!-- 可选，用于点击通知栏或通知栏上的按钮后触发onEvent回调 -->
+                <action android:name="com.huawei.android.push.intent.CLICK" />
+                <!-- 可选，查看push通道是否连接，不查看则不需要 -->
+                <action android:name="com.huawei.intent.action.PUSH_STATE" />
+            </intent-filter>
+        </receiver>
+
         <!-- 必选： SDK 核心功能 -->
 
 
@@ -296,7 +325,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.app.yuqing.activity.CSLeaveMessageActivity"
+            android:name="io.rong.imkit.activity.CSLeaveMessageActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <!-- rongimkit end -->
@@ -315,13 +344,14 @@
         <!-- 配置的第三方参数属性 -->
         <meta-data
             android:name="PUSH_APPID"
-            android:value="voEIbJ3cd49AD067J0fkX8" /> <!-- 替换为第三方应用的APPID -->
+            android:value="" />
         <meta-data
             android:name="PUSH_APPKEY"
-            android:value="E9S4DrWAmNAJwIhA4RmjB4" /> <!-- 替换为第三方应用的APPKEY -->
+            android:value="" />
         <meta-data
             android:name="PUSH_APPSECRET"
-            android:value="34VSWCAzbJ6P7e03sT2ou5" /> <!-- 替换为第三方应用的APPSECRET -->
+            android:value="" />
+
         <!-- 配置SDK核心服务 -->
         <service
             android:name="com.igexin.sdk.PushService"
@@ -352,7 +382,8 @@
             android:exported="false"
             android:process=":pushservice"
             android:taskAffinity="com.igexin.sdk.PushActivityTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
         <activity
             android:name="com.igexin.sdk.GActivity"
             android:excludeFromRecents="true"
@@ -367,8 +398,64 @@
             android:label="PushService"
             android:process=":pushservice" >
         </service>
-        <service android:name="com.app.yuqing.service.YuQingIntentService" />
+        <service android:name="com.app.yuqing.service.YuQingIntentService" >
+        </service>
         <!-- 个推SDK配置结束 -->
+
+
+        <!-- 高德地图设置key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="edbfbf08117f304831d5edfa2afb982a" />
+        <!-- 定位需要的服务 -->
+
+
+        <!-- <service android:name="com.amap.api.location.APSService" /> -->
+
+
+        <!-- 自动安装广播 -->
+        <receiver android:name="com.app.yuqing.service.UpdataBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+                <!-- <action android:name="android.intent.action.PACKAGE_INSTALL" /> -->
+            </intent-filter>
+        </receiver>
+
+        <!-- 图片预览界面 -->
+        <activity
+            android:name="cn.bingoogolapple.photopicker.activity.BGAPhotoPreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/BGAPPTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- 图片选择界面 -->
+        <activity
+            android:name="cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/BGAPPTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- 图片选择预览界面 -->
+        <activity
+            android:name="cn.bingoogolapple.photopicker.activity.BGAPhotoPickerPreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/BGAPPTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <provider
+            android:name="cn.bingoogolapple.photopicker.util.BGAPhotoFileProvider"
+            android:authorities="com.app.yuqing.bga_photo_picker.file_provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/bga_photo_picker_file_paths" />
+        </provider>
+
+        <activity
+            android:name="pub.devrel.easypermissions.AppSettingsDialogHolderActivity"
+            android:exported="false"
+            android:label=""
+            android:theme="@style/EasyPermissions.Transparent" />
 
         <provider
             android:name="com.android.tools.fd.runtime.InstantRunContentProvider"

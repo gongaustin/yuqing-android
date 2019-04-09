@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/iMLib/iMLib.iml" filepath="$PROJECT_DIR$/iMLib/iMLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/rongIMKit/rongIMKit.iml" filepath="$PROJECT_DIR$/rongIMKit/rongIMKit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/yuqing.iml" filepath="$PROJECT_DIR$/yuqing.iml" />
-      <module fileurl="file://$PROJECT_DIR$/yuqing/yuqing-yuqing.iml" filepath="$PROJECT_DIR$/yuqing/yuqing-yuqing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yuqing/yuqing.iml" filepath="$PROJECT_DIR$/yuqing/yuqing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yuqing-android.iml" filepath="$PROJECT_DIR$/yuqing-android.iml" />
     </modules>
   </component>
 </project>

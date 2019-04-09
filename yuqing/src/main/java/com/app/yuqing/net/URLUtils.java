@@ -8,7 +8,7 @@ public class URLUtils {
 
 //	private static final String SERVER = "http://120.24.241.113:8080/";
 
-	private static final String SERVER = "http://new.sevencai.cn/";
+	private static final String SERVER = "http://new.sevencai.cn:8000/";
 	
 	public static final String PIC_SERVER = "http://sevencai.cn";
 	

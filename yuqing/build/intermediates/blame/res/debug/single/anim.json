@@ -1,10 +1,58 @@
 [
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\fade_in_anim.xml",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\anim\\fade_in_anim.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_slide_out_top.xml"
     },
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\fade_out_anim.xml",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\anim\\fade_out_anim.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_tooltip_exit.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_tooltip_exit.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_tooltip_enter.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_tooltip_enter.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\fade_out_anim.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\anim\\fade_out_anim.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\fade_in_anim.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\anim\\fade_in_anim.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\anim\\abc_slide_in_top.xml"
     }
 ]

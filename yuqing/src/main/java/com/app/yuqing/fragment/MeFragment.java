@@ -208,10 +208,10 @@ public class MeFragment extends BaseFragment {
 		}
 		switch(requestCode) {
 			case REQUEST_CODE_CHOOSE_PHOTO :
-				if (BGAPhotoPickerActivity.getSelectedImages(data) != null
-						&& BGAPhotoPickerActivity.getSelectedImages(data).size() > 0) {
-					if (!TextUtils.isEmpty(BGAPhotoPickerActivity.getSelectedImages(data).get(0))) {
-						File file = new File(BGAPhotoPickerActivity.getSelectedImages(data).get(0));
+				if (BGAPhotoPickerActivity.getSelectedPhotos(data) != null
+						&& BGAPhotoPickerActivity.getSelectedPhotos(data).size() > 0) {
+					if (!TextUtils.isEmpty(BGAPhotoPickerActivity.getSelectedPhotos(data).get(0))) {
+						File file = new File(BGAPhotoPickerActivity.getSelectedPhotos(data).get(0));
 						if (!file.exists()) {
 							file.getParentFile().mkdirs();
 							try {
@@ -285,7 +285,9 @@ public class MeFragment extends BaseFragment {
 		if (EasyPermissions.hasPermissions(getActivity(), perms)) {
 			// 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话就没有拍照功能
 			File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "BGAPhotoPickerTakePhoto");
-			startActivityForResult(BGAPhotoPickerActivity.newIntent(getActivity(), takePhotoDir, 1, null, false), REQUEST_CODE_CHOOSE_PHOTO);
+			BGAPhotoPickerActivity.IntentBuilder intentBuilder = new BGAPhotoPickerActivity.IntentBuilder(getContext());
+			//Intent
+			startActivityForResult(intentBuilder.build(), REQUEST_CODE_CHOOSE_PHOTO);
 
 		} else {
 			EasyPermissions.requestPermissions(this, "图片选择需要以下权限:\n\n1.访问设备上的照片\n\n2.拍照", REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);

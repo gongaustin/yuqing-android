@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\androidstudio\wrok\demo\yuqing\rongIMKit\src\main\assets"/><source path="D:\androidstudio\wrok\demo\yuqing\rongIMKit\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\androidstudio\wrok\demo\yuqing\rongIMKit\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\Android App\yuqing-android\rongIMKit\src\main\assets"/><source path="D:\Android App\yuqing-android\rongIMKit\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\Android App\yuqing-android\rongIMKit\src\release\assets"/></dataSet></merger>

@@ -1,6 +1,14 @@
 [
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\xml\\rc_file_path.xml",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\xml\\rc_file_path.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\xml\\rc_file_path.xml",
+        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\xml\\rc_file_path.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\xml\\bga_photo_picker_file_paths.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\xml\\bga_photo_picker_file_paths.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\xml\\network_security_config.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\xml\\network_security_config.xml"
     }
 ]

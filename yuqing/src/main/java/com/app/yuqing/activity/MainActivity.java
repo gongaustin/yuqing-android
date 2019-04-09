@@ -311,7 +311,7 @@ public class MainActivity extends BaseActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
+
 	private void exitProgram(){
 		Intent intent=new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_HOME);

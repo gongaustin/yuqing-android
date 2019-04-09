@@ -1,14 +1,14 @@
 [
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\push_small.png",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\drawable-mdpi\\push_small.png"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\push.png",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\drawable-mdpi\\push.png"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\push_small.png",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\drawable-mdpi\\push_small.png"
     },
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\push.png",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\drawable-mdpi\\push.png"
     }
 ]

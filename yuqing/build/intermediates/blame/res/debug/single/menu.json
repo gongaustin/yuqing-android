@@ -1,6 +1,18 @@
 [
     {
-        "merged": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
-        "source": "D:\\androidstudio\\wrok\\demo\\yuqing\\yuqing\\src\\main\\res\\menu\\main.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\menu\\bga_pp_menu_photo_picker.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\menu\\bga_pp_menu_photo_picker.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\menu\\bga_pp_menu_photo_picker_preview.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\menu\\bga_pp_menu_photo_picker_preview.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\menu\\bga_pp_menu_photo_preview.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\menu\\bga_pp_menu_photo_preview.xml"
     }
 ]
