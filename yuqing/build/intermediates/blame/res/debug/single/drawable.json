@@ -48,28 +48,28 @@
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\drawable\\rc_edit_text_background_selector.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\bga_pp_selector_btn_confirm.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\drawable\\bga_pp_selector_btn_confirm.xml"
-    },
-    {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\drawable\\abc_edit_text_material.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\rc_cs_group_checkbox_selector.xml",
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\drawable\\rc_cs_group_checkbox_selector.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\drawable\\abc_edit_text_material.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\rc_cs_admin_selector.xml",
-        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\drawable\\rc_cs_admin_selector.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\bga_pp_selector_btn_confirm.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\drawable\\bga_pp_selector_btn_confirm.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\rc_cs_list_divider_style.xml",
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\drawable\\rc_cs_list_divider_style.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\rc_cs_admin_selector.xml",
+        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\drawable\\rc_cs_admin_selector.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\drawable\\rc_cs_back_selector.xml",

@@ -24,16 +24,16 @@
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_fr_public_service_search.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\bga_pp_al_photo_picker.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\layout\\bga_pp_al_photo_picker.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_cs_leave_message.xml",
+        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_cs_leave_message.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_ext_sub_menu_item.xml",
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_ext_sub_menu_item.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_cs_leave_message.xml",
-        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_cs_leave_message.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\bga_pp_al_photo_picker.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c5a235b6e83f809fe765f50b2745f9229a554f7f\\output\\res\\layout\\bga_pp_al_photo_picker.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\bga_pp_item_photo_folder.xml",
@@ -92,32 +92,32 @@
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_ext_menu_container.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\adapter_creategroup.xml",
-        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\layout\\adapter_creategroup.xml"
-    },
-    {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
         "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\layout\\activity_about.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\adapter_creategroup.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\layout\\adapter_creategroup.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_item_file_message.xml",
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_item_file_message.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_item_public_service_input_menus.xml",
-        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_item_public_service_input_menus.xml"
-    },
-    {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_item_conversation.xml",
-        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_item_conversation.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\activity_conversation.xml",
+        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\layout\\activity_conversation.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\7217f180861461312fb11d041add079db6c58fb4\\output\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\activity_conversation.xml",
-        "source": "D:\\Android App\\yuqing-android\\yuqing\\src\\main\\res\\layout\\activity_conversation.xml"
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_item_conversation.xml",
+        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_item_conversation.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_item_public_service_input_menus.xml",
+        "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_item_public_service_input_menus.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_contact.xml",
@@ -228,12 +228,12 @@
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_item_public_service_message.xml"
     },
     {
-        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\ee1c7e7b7086cef254f1b1d78cf828c157e536b9\\output\\res\\layout\\notification_template_big_media_narrow.xml"
-    },
-    {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_cs_alert_robot_evaluation.xml",
         "source": "D:\\Android App\\yuqing-android\\rongIMKit\\build\\intermediates\\bundles\\default\\res\\layout\\rc_cs_alert_robot_evaluation.xml"
+    },
+    {
+        "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\ee1c7e7b7086cef254f1b1d78cf828c157e536b9\\output\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
         "merged": "D:\\Android App\\yuqing-android\\yuqing\\build\\intermediates\\res\\merged\\debug\\layout\\rc_item_public_service_conversation.xml",
